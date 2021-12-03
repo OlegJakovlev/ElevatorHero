@@ -272,7 +272,6 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -585,7 +584,6 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -636,6 +634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa89241a7dfd6e4419c1e3411c40b4e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _jump: {fileID: 11400000, guid: c9b2fdcfc1b4be34bb44bdd81e38e316, type: 2}
   _initialGroundTime: 0.2
   _checkRadius: 0.1
   _groundCheck: {fileID: 288003047}
@@ -643,6 +642,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _speed: 5
+  _speedInAir: 2.5
   _jumpHeight: 5
 --- !u!114 &1092527536
 MonoBehaviour:
