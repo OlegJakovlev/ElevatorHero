@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0.99999905, b: 0.99999905, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -511,9 +511,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 95659695}
-  - {fileID: 1092527531}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1092527530
 GameObject:
@@ -544,13 +543,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1092527530}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.3480005, y: -0.381, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.216215, y: 0.11903313, z: 0.6504898}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children:
   - {fileID: 288003047}
-  m_Father: {fileID: 1045066851}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1092527532
 Rigidbody2D:
@@ -636,14 +635,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _jump: {fileID: 11400000, guid: c9b2fdcfc1b4be34bb44bdd81e38e316, type: 2}
   _initialGroundTime: 0.2
-  _checkRadius: 0.1
+  _checkRadius: 0.25
   _groundCheck: {fileID: 288003047}
   _whatIsGround:
     serializedVersion: 2
     m_Bits: 64
   _speed: 5
-  _speedInAir: 2.5
-  _jumpHeight: 5
+  _speedInAirCooeficient: 0.7
 --- !u!114 &1092527536
 MonoBehaviour:
   m_ObjectHideFlags: 0

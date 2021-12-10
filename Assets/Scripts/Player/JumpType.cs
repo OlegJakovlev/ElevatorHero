@@ -8,4 +8,19 @@ public class JumpType : ScriptableObject
     public AnimationCurve gravityRise;
     public AnimationCurve gravityFall;
     public float gravityOnRelease;
+
+    public void StartJump()
+    {
+
+    }
+
+    public void StopJump()
+    {
+
+    }
+
+    public float JumpUpdate()
+    {
+        return 0.0f;
+    }
 }

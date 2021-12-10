@@ -6,14 +6,15 @@ public class PhysicsMovement : MonoBehaviour
 {
     [SerializeField] private JumpType _jump;
 
+    [Header("Ground Time")]
     [SerializeField] private float _initialGroundTime = 0.2f;
     [SerializeField] private float _checkRadius;
     [SerializeField] private Transform _groundCheck;
     [SerializeField] private LayerMask _whatIsGround;
 
-    [SerializeField] private float _speed;
-    [SerializeField] private float _speedInAir;
-    [SerializeField] private float _jumpHeight;
+    [Header("Speed")]
+    [SerializeField] private float _speed = 1;
+    [SerializeField] private float _speedInAirCooeficient = 0.7f;
 
     private float _groundTime;
     private bool _isGrounded;
@@ -51,7 +52,11 @@ public class PhysicsMovement : MonoBehaviour
         }
         else
         {
-            _rigidbody.velocity = new Vector2(direction * _speedInAir, _rigidbody.velocity.y);
+            // Timer for time in air and linear decreasing speed
+            _rigidbody.velocity = new Vector2 (
+                Mathf.Lerp(_rigidbody.velocity.x, _rigidbody.velocity.x * _speedInAirCooeficient, _lastTimeGrounded),
+                _rigidbody.velocity.y
+            );
         }
     }
 
