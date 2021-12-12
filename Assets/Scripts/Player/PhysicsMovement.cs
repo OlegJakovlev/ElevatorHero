@@ -1,77 +1,115 @@
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
-public class PhysicsMovement : MonoBehaviour
+namespace Player
 {
-    [SerializeField] private JumpType _jump;
-
-    [Header("Ground Time")]
-    [SerializeField] private float _initialGroundTime = 0.2f;
-    [SerializeField] private float _checkRadius;
-    [SerializeField] private Transform _groundCheck;
-    [SerializeField] private LayerMask _whatIsGround;
-
-    [Header("Speed")]
-    [SerializeField] private float _speed = 1;
-    [SerializeField] private float _speedInAirCooeficient = 0.7f;
-
-    private float _groundTime;
-    private bool _isGrounded;
-    private float _lastTimeGrounded;
-    private Rigidbody2D _rigidbody;
-
-    public Action Jump;
-
-    private void Awake()
+    [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(JumpType))]
+    public class PhysicsMovement : MonoBehaviour
     {
-        _rigidbody = GetComponent<Rigidbody2D>();
-    }
+        [Header("Ground")]
+        [SerializeField] private GroundChecker _groundChecker;
+        [SerializeField] private float _initialGroundDelayTime = 0.2f;
+        private float _currentGroundDelayTime; // Used for jump in air
+        private float _lastTimeGrounded;
+        private bool _isGrounded;
 
-    private void Update()
-    {
-        _lastTimeGrounded += Time.deltaTime;
-        _groundTime -= Time.deltaTime;
+        [Header("Jump")]
+        [SerializeField] private JumpType _jumpAnimation;
+        [SerializeField] private float _initialJumpDelayTime = 0.4f;
+        [SerializeField] private float _jumpCheckDelay = 0.125f;
+        private float _currentJumpDelayTime;
+        
+        [Header("Speed")]
+        [SerializeField] private float _speed = 1f;
+        [SerializeField] private float _airResistanceCoefficient = 0.7f;
+        
+        private Rigidbody2D _rigidbody;
+        private bool _playAnimation = false;
 
-        // Bug: It is possible to jump after initial jump
-        if (_lastTimeGrounded > 0.125f)
-            _isGrounded = Physics2D.OverlapCircle(_groundCheck.position, _checkRadius, _whatIsGround);
-
-        if (_isGrounded)
+        private void Awake()
         {
-            _lastTimeGrounded = 0;
-            _groundTime = _initialGroundTime;
+            _rigidbody = GetComponent<Rigidbody2D>();
+            _jumpAnimation = GetComponent<JumpType>();
         }
-    }
 
-    public void ApplyHorizontal(float direction)
-    {
-        if (_isGrounded)
+        private void OnEnable()
         {
-            _rigidbody.velocity = new Vector2(direction * _speed, _rigidbody.velocity.y);
+            _groundChecker.valueChanged += UpdateGroundedStatus;
         }
-        else
+
+        private void OnDisable()
         {
-            // Timer for time in air and linear decreasing speed
-            _rigidbody.velocity = new Vector2 (
-                Mathf.Lerp(_rigidbody.velocity.x, _rigidbody.velocity.x * _speedInAirCooeficient, _lastTimeGrounded),
-                _rigidbody.velocity.y
-            );
+            _groundChecker.valueChanged -= UpdateGroundedStatus;
         }
-    }
 
-    public void ApplyVertical()
-    {
-        if (_groundTime < 0) return;
+        private void UpdateGroundedStatus()
+        {
+            _isGrounded = _groundChecker.IsGrounded;
+        }
 
-        _isGrounded = false;
+        private void Update()
+        {
+            print(_rigidbody.velocity);
+            
+            // Timers
+            _currentJumpDelayTime -= Time.deltaTime;
+            _currentGroundDelayTime -= Time.deltaTime;
+            _lastTimeGrounded += Time.deltaTime;
 
-        // Reset timers
-        _groundTime = 0;
-        Jump?.Invoke();
+            if (_isGrounded)
+            {
+                _lastTimeGrounded = 0;
+                _currentGroundDelayTime = _initialGroundDelayTime;
+            }
+            
+            // Apply jump animation
+            if (_playAnimation)
+            {
+                _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _jumpAnimation.GetProgressValue() * _jumpAnimation.heightCoefficient);
 
-        // Apply jump
-        _rigidbody.velocity = Vector2.up * _jump.gravityRise.Evaluate(1 - _lastTimeGrounded) * _jump.initalJumpForce;
-        //_rigidbody.velocity = Vector2.up * _jumpHeight;
+                if (_jumpAnimation.GetProgress() > 1f)
+                {
+                    _playAnimation = false;
+                }
+            }
+        }
+
+        public void ApplyHorizontal(float direction)
+        {
+            if (_isGrounded)
+            {
+                _rigidbody.velocity = new Vector2 (
+                    Mathf.Lerp(_rigidbody.velocity.x, direction * _speed, -1 * _currentJumpDelayTime),
+                    _rigidbody.velocity.y
+                );
+            }
+            else
+            {
+                // Timer for time in air and linear decreasing speed
+                _rigidbody.velocity = new Vector2 (
+                    Mathf.Lerp(_rigidbody.velocity.x, direction * _speed * _airResistanceCoefficient, _lastTimeGrounded),
+                    _rigidbody.velocity.y
+                );
+            }
+        }
+
+        public void ApplyVertical(float direction)
+        {
+            if (direction == 1f) _currentJumpDelayTime = _initialJumpDelayTime;
+            
+            // Check if we run animation of jump
+            if (_playAnimation) return;
+            
+            if (_currentJumpDelayTime < _jumpCheckDelay || _currentGroundDelayTime < 0) return;
+
+            // Reset timers
+            _currentGroundDelayTime = 0;
+            _currentJumpDelayTime = 0;
+
+            // Jump
+            _jumpAnimation.ResetProgress();
+            _playAnimation = true;
+        }
     }
 }

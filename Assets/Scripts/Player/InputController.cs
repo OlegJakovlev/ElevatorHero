@@ -1,52 +1,57 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-// https://gustavcorpas.medium.com/building-a-customizable-jump-in-unity-using-animation-curves-a168a618428d
-
-[RequireComponent(typeof(PhysicsMovement))]
-public class InputController : MonoBehaviour
+namespace Player
 {
-    [SerializeField] private float _initialPressTime = 0.4f;
-    private PhysicsMovement _physicsMovement;
-    private float _pressTime;
-
-    private void Awake()
+    [RequireComponent(typeof(PhysicsMovement))]
+    public class InputController : MonoBehaviour
     {
-        _physicsMovement = GetComponent<PhysicsMovement>();
-    }
+        // Input actions mapping
+        private InputMapping _controls;
+        
+        [Header("Physics")]
+        private Vector2 _movementVector;
+        private PhysicsMovement _physicsMovement;
 
-    private void Update()
-    {
-        OnMove(Input.GetAxisRaw("Horizontal"));
+        private void Awake()
+        {
+            _controls = new InputMapping();
+            _physicsMovement = GetComponent<PhysicsMovement>();
+            
+            _controls.Character.Shoot.performed += context => Shoot();
+            _controls.Character.Movement.performed += context => Move(context.ReadValue<float>());
+            _controls.Character.Jump.performed += context => Jump(context.ReadValue<float>());
+        }
 
-        // Possibility to press jump in air
-        _pressTime -= Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.W)) _pressTime = _initialPressTime;
+        private void OnEnable()
+        {
+            _controls.Enable();
+        }
 
-        if (_pressTime > 0) OnJump();
-    }
+        private void OnDisable()
+        {
+            _controls.Disable();
+        }
 
-    private void OnEnable()
-    {
-        _physicsMovement.Jump += ResetTimer;
-    }
+        private void Update()
+        {
+            _physicsMovement.ApplyHorizontal(_movementVector.x);
+            _physicsMovement.ApplyVertical(_movementVector.y);
+        }
 
-    private void OnDisable()
-    {
-        _physicsMovement.Jump -= ResetTimer;
-    }
+        private void Move(float direction)
+        {
+            _movementVector.x = direction;
+        }
+        
+        private void Jump(float direction)
+        {
+            _movementVector.y = direction;
+        }
 
-    private void ResetTimer()
-    {
-        _pressTime = 0;
-    }
-
-    private void OnMove(float horizontalForce)
-    {
-        _physicsMovement.ApplyHorizontal(horizontalForce);
-    }
-
-    private void OnJump()
-    {
-        _physicsMovement.ApplyVertical();
+        private void Shoot()
+        {
+            //print("Shoot!");
+        }
     }
 }

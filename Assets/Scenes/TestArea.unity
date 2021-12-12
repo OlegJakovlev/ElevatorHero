@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0.99999905, b: 0.99999905, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -333,6 +333,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 288003047}
+  - component: {fileID: 288003048}
+  - component: {fileID: 288003049}
   m_Layer: 0
   m_Name: GroundCheck
   m_TagString: Untagged
@@ -354,6 +356,47 @@ Transform:
   m_Father: {fileID: 1092527531}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &288003048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288003046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dcbc2a0948b9ea4a8f999d83809f385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _whatIsGround:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!61 &288003049
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288003046}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.8, y: 0.15}
+  m_EdgeRadius: 0.05
 --- !u!1 &614799002
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,9 +569,11 @@ GameObject:
   - component: {fileID: 1092527534}
   - component: {fileID: 1092527533}
   - component: {fileID: 1092527532}
-  - component: {fileID: 1092527536}
-  - component: {fileID: 1092527535}
   - component: {fileID: 1092527537}
+  - component: {fileID: 1092527535}
+  - component: {fileID: 1092527536}
+  - component: {fileID: 1092527538}
+  - component: {fileID: 1092527539}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -544,7 +589,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1092527530}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.216215, y: 0.11903313, z: 0.6504898}
+  m_LocalPosition: {x: 5.216215, y: 0.25, z: 0.6504898}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children:
   - {fileID: 288003047}
@@ -630,18 +675,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1092527530}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa89241a7dfd6e4419c1e3411c40b4e9, type: 3}
+  m_Script: {fileID: 11500000, guid: d6171dbcf95d42f4c97c58279358f281, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jump: {fileID: 11400000, guid: c9b2fdcfc1b4be34bb44bdd81e38e316, type: 2}
-  _initialGroundTime: 0.2
-  _checkRadius: 0.25
-  _groundCheck: {fileID: 288003047}
-  _whatIsGround:
-    serializedVersion: 2
-    m_Bits: 64
-  _speed: 5
-  _speedInAirCooeficient: 0.7
 --- !u!114 &1092527536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -651,10 +687,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1092527530}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 720489f2d1dcfa54e8abeda84fff8cfd, type: 3}
+  m_Script: {fileID: 11500000, guid: f2ee66d6d43dc3d4fa921639cfa611ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initialPressTime: 0.4
+  _groundChecker: {fileID: 288003048}
+  _initialGroundDelayTime: 0.2
+  _jumpAnimation: {fileID: 1092527539}
+  _initialJumpDelayTime: 0.45
+  _jumpCheckDelay: 0.125
+  _speed: 6
+  _airResistanceCoefficient: 0.7
 --- !u!61 &1092527537
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -681,3 +723,88 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1092527538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092527530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: c23a630c00a6b824bb676de5d64f2358, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a452c62a-5db9-4392-a840-1b43f4988d87
+    m_ActionName: Character/Shoot[/Mouse/leftButton,/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6d7825f6-7763-45ec-b52f-0ac999ca50a7
+    m_ActionName: Character/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: Keyboard and Mouse
+  m_DefaultActionMap: Character
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &1092527539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092527530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf1158ca3d1430e45bb6f0123de3f6c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 1
+  heightCoefficient: 5
+  gravityRise:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.4471577
+      value: 0.7541551
+      inSlope: 0.8140178
+      outSlope: 0.8140178
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
