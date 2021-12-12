@@ -50,8 +50,6 @@ namespace Player
 
         private void Update()
         {
-            print(_rigidbody.velocity);
-            
             // Timers
             _currentJumpDelayTime -= Time.deltaTime;
             _currentGroundDelayTime -= Time.deltaTime;
@@ -84,9 +82,10 @@ namespace Player
                     _rigidbody.velocity.y
                 );
             }
+            
+            // In air make linear interpolation of speed
             else
             {
-                // Timer for time in air and linear decreasing speed
                 _rigidbody.velocity = new Vector2 (
                     Mathf.Lerp(_rigidbody.velocity.x, direction * _speed * _airResistanceCoefficient, _lastTimeGrounded),
                     _rigidbody.velocity.y

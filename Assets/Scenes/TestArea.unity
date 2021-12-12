@@ -526,6 +526,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c9321c0fadfebf4bad2202ed32776bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _slowFactor: 1
+  _objectToFollow: {fileID: 1092527531}
+  _defaultVisionArea: {x: 1.6, y: 7.5, z: 0}
 --- !u!1 &1045066850
 GameObject:
   m_ObjectHideFlags: 0
