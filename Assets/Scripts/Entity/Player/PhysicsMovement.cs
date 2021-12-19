@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace Player
+namespace Entity.Player
 {
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(JumpType))]
@@ -106,7 +105,7 @@ namespace Player
             _currentGroundDelayTime = 0;
             _currentJumpDelayTime = 0;
 
-            // Jump
+            // Call Jump
             _jumpAnimation.ResetProgress();
             _playAnimation = true;
         }

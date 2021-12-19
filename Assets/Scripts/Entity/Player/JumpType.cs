@@ -1,27 +1,29 @@
-using System;
 using UnityEngine;
 
-namespace Player
+namespace Entity.Player
 {
     public class JumpType : MonoBehaviour
     {
         [Header("Time")]
         private float _currentTime;
         private float _progress = 0;
-        public float duration;
+        private float _duration;
 
         [Header("Height")]
         public float heightCoefficient;
         
         [Header("Gravity Graphic")]
-        public AnimationCurve gravityRise;
+        public AnimationCurve gravityChange;
 
+        private void Awake()
+        {
+            _duration = gravityChange.keys[gravityChange.keys.Length - 1].time;
+        }
+        
         private void Update()
         {
             _currentTime += Time.deltaTime;
-
-            // Update progress
-            _progress = _currentTime / duration;
+            _progress = _currentTime / _duration;
         }
 
         public void ResetProgress()
@@ -37,7 +39,7 @@ namespace Player
 
         public float GetProgressValue()
         {
-            return gravityRise.Evaluate(_progress);
+            return gravityChange.Evaluate(_progress);
         }
     }
 }

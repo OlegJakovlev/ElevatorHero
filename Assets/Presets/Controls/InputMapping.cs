@@ -41,6 +41,14 @@ public class @InputMapping : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=2)""
+                },
+                {
+                    ""name"": ""Actiovation"",
+                    ""type"": ""Button"",
+                    ""id"": ""a64d77c1-19ab-4ec4-bf8d-2c4af473c42c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -197,6 +205,17 @@ public class @InputMapping : IInputActionCollection, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""23808949-6e9c-451a-b8ae-08429a2e19fe"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Actiovation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -225,6 +244,7 @@ public class @InputMapping : IInputActionCollection, IDisposable
         m_Character_Shoot = m_Character.FindAction("Shoot", throwIfNotFound: true);
         m_Character_Movement = m_Character.FindAction("Movement", throwIfNotFound: true);
         m_Character_Jump = m_Character.FindAction("Jump", throwIfNotFound: true);
+        m_Character_Actiovation = m_Character.FindAction("Actiovation", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -277,6 +297,7 @@ public class @InputMapping : IInputActionCollection, IDisposable
     private readonly InputAction m_Character_Shoot;
     private readonly InputAction m_Character_Movement;
     private readonly InputAction m_Character_Jump;
+    private readonly InputAction m_Character_Actiovation;
     public struct CharacterActions
     {
         private @InputMapping m_Wrapper;
@@ -284,6 +305,7 @@ public class @InputMapping : IInputActionCollection, IDisposable
         public InputAction @Shoot => m_Wrapper.m_Character_Shoot;
         public InputAction @Movement => m_Wrapper.m_Character_Movement;
         public InputAction @Jump => m_Wrapper.m_Character_Jump;
+        public InputAction @Actiovation => m_Wrapper.m_Character_Actiovation;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -302,6 +324,9 @@ public class @InputMapping : IInputActionCollection, IDisposable
                 @Jump.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnJump;
+                @Actiovation.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnActiovation;
+                @Actiovation.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnActiovation;
+                @Actiovation.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnActiovation;
             }
             m_Wrapper.m_CharacterActionsCallbackInterface = instance;
             if (instance != null)
@@ -315,6 +340,9 @@ public class @InputMapping : IInputActionCollection, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @Actiovation.started += instance.OnActiovation;
+                @Actiovation.performed += instance.OnActiovation;
+                @Actiovation.canceled += instance.OnActiovation;
             }
         }
     }
@@ -333,5 +361,6 @@ public class @InputMapping : IInputActionCollection, IDisposable
         void OnShoot(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnActiovation(InputAction.CallbackContext context);
     }
 }
