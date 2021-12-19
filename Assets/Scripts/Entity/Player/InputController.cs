@@ -58,6 +58,7 @@ namespace Entity.Player
         
         private void Jump(float direction)
         {
+            _itemActivator.CallElevator(direction);
             _movementVector.y = direction;
             if (direction != 0) _lastNonZeroMovementVector.y = direction;
         }

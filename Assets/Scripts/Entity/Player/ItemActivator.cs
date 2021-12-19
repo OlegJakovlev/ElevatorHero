@@ -1,14 +1,16 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Entity.Player
 {
+    using Entity.Elevator;
+    
     public class ItemActivator : MonoBehaviour
     {
         [SerializeField] private LayerMask _mask;
         private List<IActivator> _currentActivationItemsInRange;
-
+        private Elevator _currentElevator;
+        
         private void Awake()
         {
             _currentActivationItemsInRange = new List<IActivator>();
@@ -22,9 +24,28 @@ namespace Entity.Player
             }
         }
 
+        public void CallElevator(float direction)
+        {
+            if (_currentElevator == null) return;
+
+            if (direction > 0)
+            {
+                _currentElevator.CallUp();
+            }
+            else if (direction < 0)
+            {
+                _currentElevator.CallDown();
+            }
+        }
+
         private void OnTriggerEnter2D(Collider2D newCollider)
         {
             if ((_mask.value & (1 << newCollider.gameObject.layer)) <= 0) return;
+
+            if (newCollider.gameObject.TryGetComponent(out Elevator elevator))
+            {
+                _currentElevator = elevator;
+            }
             
             if (newCollider.gameObject.TryGetComponent(out IActivator activator))
             {
@@ -34,6 +55,11 @@ namespace Entity.Player
 
         private void OnTriggerExit2D(Collider2D newCollider)
         {
+            if (newCollider.gameObject.TryGetComponent(out Elevator elevator))
+            {
+                _currentElevator = null;
+            }
+            
             if (newCollider.gameObject.TryGetComponent(out IActivator activator))
             {
                 _currentActivationItemsInRange.Remove(activator);

@@ -7,18 +7,16 @@ namespace Entity.Elevator
     [RequireComponent(typeof(Rigidbody2D))]
     public class Elevator : MonoBehaviour
     {
-        private readonly Random _rng = new Random();
-        private Rigidbody2D _rigidbody;
-        [SerializeField] private LayerMask _mask;
-
-        [Header("Type")] 
+        [Header("Type")]
         [SerializeField] private bool _isVertical;
         
         [Header("Stop Points")]
         [SerializeField] private List<Point> _stops;
+        private int _currentStopIndex;
         private Point _nextStop;
-        private bool _manualCalled = false;
+        private readonly Random _rng = new Random();
         
+        [Header("Stop Timers")]
         [SerializeField] private float _delayToStayOnStop;
         private float _currentDelayTimer;
 
@@ -26,15 +24,18 @@ namespace Entity.Elevator
         [SerializeField] private float _maxDifference;
         private bool _playerInside;
         
+        [Header("Movement Physics")]
+        [SerializeField] private LayerMask _mask;
         [SerializeField] private float _terminalVelocity;
+        private Rigidbody2D _rigidbody;
         private float _velocity;
         private Vector3 _direction;
-
+        private bool _manualCalled = false;
+        
         private void OnTriggerStay2D(Collider2D other)
         {
             if ((_mask.value & (1 << other.gameObject.layer)) > 0)
             {
-                _velocity = 0;
                 _playerInside = true;
             }
         }
@@ -61,43 +62,48 @@ namespace Entity.Elevator
         
         private void Update()
         {
-            if (_playerInside) return;
-            
+            // Check if we are on correct stop
             if (Vector3.Distance(_nextStop.GetPosition(), transform.position) <= _maxDifference)
             {
+                // Stop here
                 _velocity = 0;
-                _currentDelayTimer += Time.deltaTime;
                 
-                if (!_manualCalled)
+                // Dont move while player is inside
+                if (!_playerInside) _currentDelayTimer += Time.deltaTime;
+
+                if (_currentDelayTimer > _delayToStayOnStop)
                 {
-                    if (_currentDelayTimer > _delayToStayOnStop)
+                    // Player left the elevator
+                    if (!_playerInside)
+                    {
+                        _manualCalled = false;
+                    }
+                    
+                    // Choose next random stop
+                    if (!_manualCalled)
                     {
                         ChooseRandomNextStop();
                     }
-                }
-                else
-                {
-                    //
                 }
             }
         }
 
         private void FixedUpdate()
         {
-            _rigidbody.MovePosition((transform.position + _direction * _velocity * Time.deltaTime));
+            _rigidbody.MovePosition((transform.position + _direction * _velocity * Time.deltaTime)); // TODO: LERP of speed-to-distance_left ratio 
             //_rigidbody.MovePosition((transform.position + (_nextStop.GetPosition() - transform.position) * Time.deltaTime));
         }
 
         private void ChooseRandomNextStop()
         {
-            _currentDelayTimer = 0;
-            _velocity = _terminalVelocity;
+            ResetTimerAndVelocity();
 
             // Get new random stop
             Point newStop = null;
             while (newStop == null || _nextStop == newStop)
             {
-                newStop = _stops[_rng.Next(0, _stops.Count)];
+                _currentStopIndex = _rng.Next(0, _stops.Count);
+                newStop = _stops[_currentStopIndex];
             }
             _nextStop = newStop;
             
@@ -106,12 +112,12 @@ namespace Entity.Elevator
 
         public void SetNextStop(Point newStop)
         {
-            _currentDelayTimer = 0;
-            _velocity = _terminalVelocity;
+            ResetTimerAndVelocity();
             
+            _currentStopIndex = _stops.FindIndex(stop => stop.GetPosition() == newStop.GetPosition());
             _nextStop = newStop;
             _manualCalled = true;
-            
+
             UpdateMoveDirection();
         }
         
@@ -130,6 +136,28 @@ namespace Entity.Elevator
                     _nextStop.GetPosition().x >= transform.position.x ? 1 : -1,
                     0
                 );
+            }
+        }
+
+        private void ResetTimerAndVelocity()
+        {
+            _currentDelayTimer = 0;
+            _velocity = _terminalVelocity;
+        }
+
+        public void CallUp()
+        {
+            if (_currentStopIndex < _stops.Count - 1)
+            {
+                SetNextStop(_stops[++_currentStopIndex]);
+            }
+        }
+
+        public void CallDown()
+        {
+            if (_currentStopIndex > 0)
+            {
+                SetNextStop(_stops[--_currentStopIndex]);
             }
         }
     }
