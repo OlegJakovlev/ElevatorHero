@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace Entity
+namespace Entity.ProjectileShoot
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class Projectile : MonoBehaviour

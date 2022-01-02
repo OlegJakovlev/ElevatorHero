@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Entity
+namespace Entity.ProjectileShoot
 {
     public class Shooting : MonoBehaviour
     {
