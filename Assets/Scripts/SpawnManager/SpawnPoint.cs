@@ -26,6 +26,8 @@ namespace SpawnManager
 
         private void OnDrawGizmosSelected()
         {
+            if (!_collider) return;
+            
             Gizmos.color = Color.cyan;
             Gizmos.DrawCube(_collider.bounds.center, _halfSize * 2);
         }

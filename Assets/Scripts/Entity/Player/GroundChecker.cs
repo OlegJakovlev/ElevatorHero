@@ -7,7 +7,7 @@ namespace Entity.Player
     {
         [SerializeField] private LayerMask _whatIsGround;
         
-        public Action valueChanged; 
+        public event Action valueChanged; 
         public bool IsGrounded { get; private set; } = false;
 
         private void OnTriggerEnter2D(Collider2D other)

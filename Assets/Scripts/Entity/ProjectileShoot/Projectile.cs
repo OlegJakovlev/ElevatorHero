@@ -1,3 +1,4 @@
+using Entity.Health;
 using UnityEngine;
 
 namespace Entity.ProjectileShoot
@@ -5,10 +6,10 @@ namespace Entity.ProjectileShoot
     [RequireComponent(typeof(Rigidbody2D))]
     public class Projectile : MonoBehaviour
     {
-        [SerializeField] private LayerMask _collisionMask;
         [SerializeField] private Vector2 _deltaVelocity;
         private Rigidbody2D _rigidbody;
-
+        private LayerMask _collisionMask;
+        
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
@@ -18,6 +19,11 @@ namespace Entity.ProjectileShoot
         {
             if ((_collisionMask.value & (1 << other.transform.gameObject.layer)) > 0)
             {
+                if (other.gameObject.TryGetComponent(out EntityHealth health))
+                {
+                    health.LoseHealth(1);
+                }
+                
                 gameObject.SetActive(false);
             }
         }
@@ -30,6 +36,11 @@ namespace Entity.ProjectileShoot
         public void ChangeProjectileDirection(float direction)
         {
             _deltaVelocity.x *= direction;
+        }
+
+        public void SetLayerMask(LayerMask _newMask)
+        {
+            _collisionMask = _newMask;
         }
     }
 }

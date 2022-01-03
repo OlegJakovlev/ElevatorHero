@@ -3,32 +3,42 @@ using UnityEngine;
 
 namespace Entity.Health
 {
-    public class EntityHealth : MonoBehaviour, IHealth
+    public abstract class EntityHealth : MonoBehaviour, IHealth
     {
-        [SerializeField] private int _maxHealth;
-        private int _currentHealth;
+        [SerializeField] protected int _maxHealth;
+        protected int _currentHealth;
 
-        public Action OnDeath;
+        public event Action OnDeath;
+        public event Action OnDamageTaken;
 
-        private void Awake()
+        protected void Start()
         {
             if (_maxHealth <= 0) Debug.LogWarning("Entity health is less that 0!");
             _currentHealth = _maxHealth;
         }
 
-        public void AddHealth(int amount)
+        public virtual void AddHealth(int amount)
         {
             if (amount <= 0) return;
             _currentHealth += amount;
         }
 
-        public void LoseHealth(int amount)
+        public virtual void LoseHealth(int amount)
         {
             if (amount <= 0) return;
+            
+            // Update current health
             _currentHealth -= amount;
+            OnDamageTaken?.Invoke();
+            
+            // Check for current health
+            if (_currentHealth <= 0) Die();
+            
+            // Set entity inactive
+            gameObject.SetActive(false);
         }
 
-        public void Die()
+        public virtual void Die()
         {
             OnDeath?.Invoke();
             gameObject.SetActive(false);

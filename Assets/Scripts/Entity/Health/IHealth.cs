@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Entity.Health
+﻿namespace Entity.Health
 {
     public interface IHealth
     {

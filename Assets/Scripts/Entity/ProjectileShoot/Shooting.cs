@@ -6,7 +6,7 @@ namespace Entity.ProjectileShoot
     {
         [SerializeField] private LayerMask _mask;
         
-        [Header("Shooting Point")] 
+        [Header("Shooting Point")]
         [SerializeField] private Transform _shootingPivot;
         private Vector3 _finalShootingPivot;
 
@@ -14,9 +14,17 @@ namespace Entity.ProjectileShoot
         [SerializeField] private float _timeDelayBetweenShots = 1.0f;
         private float _lastTimeShootTime = 0.0f;
 
+        [Header("Object Pool")]
+        [SerializeField] private ObjectPool.ObjectPool _projectileObjectPool;
+
         private void Update()
         {
             _lastTimeShootTime += Time.deltaTime;
+        }
+
+        public void SetProjectilePool(ObjectPool.ObjectPool newPool)
+        {
+            _projectileObjectPool = newPool;
         }
         
         public void ShootEvent(float direction)
@@ -34,11 +42,12 @@ namespace Entity.ProjectileShoot
             if (tmp != null) return;
             
             // Get projectile from object pool
-            GameObject projectile = ObjectPool.pool.GetPooledObject();
+            GameObject projectile = _projectileObjectPool.GetPooledObject();
             if (!projectile) return;
             
             // Shooting direction
             projectile.GetComponent<Projectile>().ChangeProjectileDirection(direction == 0 ? 1 : direction);
+            projectile.GetComponent<Projectile>().SetLayerMask(_mask);
             
             // Move projectile to pivot and shift by direction
             projectile.transform.position = worldProjectilePosition;

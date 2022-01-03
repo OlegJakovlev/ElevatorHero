@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 2545869611535625035}
   - component: {fileID: 2545869611535625034}
   - component: {fileID: 5734785935923492728}
+  - component: {fileID: 8971865000451379135}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -398,9 +399,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 320
   _shootingPivot: {fileID: 2545869611400505560}
   _timeDelayBetweenShots: 0.35
+  _projectileObjectPool: {fileID: 0}
 --- !u!114 &2545869611535625034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,3 +430,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5de3d5f268c843ad8c4d19affef36628, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8971865000451379135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2545869611535625045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce1585ed704c429aa6df60fe43236b0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 3

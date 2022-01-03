@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
@@ -37,10 +36,5 @@ public class CameraMovement : MonoBehaviour
         {
             _objectToFollow = target;
         }
-    }
-
-    public void ResetObjectToFollow()
-    {
-        _objectToFollow = this.transform;
     }
 }
