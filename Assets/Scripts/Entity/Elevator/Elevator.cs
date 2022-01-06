@@ -127,6 +127,9 @@ namespace Entity.Elevator
             _nextStop = newStop;
             
             UpdateMoveDirection();
+            
+            // Reset delay
+            if (_alarmed) _alarmed = false;
         }
 
         public void SetNextStop(Point newStop)
