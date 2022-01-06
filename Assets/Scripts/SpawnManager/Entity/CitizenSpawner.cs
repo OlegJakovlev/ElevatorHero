@@ -1,4 +1,4 @@
-﻿using Entity.Health;
+﻿using Components.Health;
 
 namespace SpawnManager.Entity
 {

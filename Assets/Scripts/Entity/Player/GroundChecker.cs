@@ -7,15 +7,15 @@ namespace Entity.Player
     {
         [SerializeField] private LayerMask _whatIsGround;
         
-        public event Action valueChanged; 
-        public bool IsGrounded { get; private set; } = false;
+        public event Action ValueChanged; 
+        public bool IsGrounded { get; private set; }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
             if ((_whatIsGround.value & (1 << other.transform.gameObject.layer)) <= 0) return;
             
             IsGrounded = true;
-            valueChanged?.Invoke();
+            ValueChanged?.Invoke();
         }
 
         private void OnTriggerExit2D(Collider2D other)
@@ -23,7 +23,7 @@ namespace Entity.Player
             if ((_whatIsGround.value & (1 << other.transform.gameObject.layer)) <= 0) return;
             
             IsGrounded = false;
-            valueChanged?.Invoke();
+            ValueChanged?.Invoke();
         }
     }
 }

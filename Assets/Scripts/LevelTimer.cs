@@ -14,6 +14,5 @@ public class LevelTimer : MonoBehaviour
     private void AlarmStatusChange()
     {
         OnAlarm?.Invoke();
-        Debug.Log("Level Alarm!");
     }
 }

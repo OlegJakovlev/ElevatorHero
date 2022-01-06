@@ -6,7 +6,7 @@ namespace Entity.Player
     {
         [Header("Time")]
         private float _currentTime;
-        private float _progress = 0;
+        private float _progress;
         private float _duration;
 
         [Header("Height")]

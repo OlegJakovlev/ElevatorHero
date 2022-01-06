@@ -1,5 +1,4 @@
-using System;
-using Entity;
+using Components;
 using Score;
 using UnityEngine;
 

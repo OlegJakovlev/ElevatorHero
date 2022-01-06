@@ -1,4 +1,4 @@
-﻿namespace Entity.Health.PlayerHealth.MVP
+﻿namespace Components.Health.PlayerHealth.MVP
 {
     public class PlayerHealthView
     {

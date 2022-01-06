@@ -1,13 +1,13 @@
-using Entity.Health;
-using Entity.Health.PlayerHealth;
+using Components.Health;
+using Components.Health.PlayerHealth;
 using UnityEngine;
 
-namespace Entity
+namespace Components.FallDamage
 {
     [RequireComponent(typeof(PlayerHealth))]
     public class FallDamage : MonoBehaviour
     {
-        [SerializeField] private float _maxVerticalVelocity = 7f;
+        [SerializeField] private float _maxVerticalVelocity = 10f;
         private EntityHealth _health;
 
         private void Awake()

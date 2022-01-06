@@ -1,9 +1,10 @@
 using System.Collections.Generic;
+using Components;
 using UnityEngine;
 
 namespace Entity.Player
 {
-    using Entity.Elevator;
+    using Elevator;
     
     public class ItemActivator : MonoBehaviour
     {
@@ -38,11 +39,6 @@ namespace Entity.Player
             }
         }
 
-        public bool AnyElevator()
-        {
-            return (_currentElevator != null);
-        }
-
         private void OnTriggerEnter2D(Collider2D newCollider)
         {
             if ((_mask.value & (1 << newCollider.gameObject.layer)) <= 0) return;
@@ -60,7 +56,7 @@ namespace Entity.Player
 
         private void OnTriggerExit2D(Collider2D newCollider)
         {
-            if (newCollider.gameObject.TryGetComponent(out Elevator elevator))
+            if (newCollider.gameObject.TryGetComponent(out Elevator _))
             {
                 _currentElevator = null;
             }

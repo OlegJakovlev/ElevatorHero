@@ -1,4 +1,4 @@
-﻿namespace Entity.Health
+﻿namespace Components.Health
 {
     public interface IHealth
     {

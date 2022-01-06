@@ -1,4 +1,4 @@
-using Entity.ProjectileShoot;
+using Components.ProjectileShoot;
 using UnityEngine;
 
 namespace Entity.Player
@@ -69,16 +69,7 @@ namespace Entity.Player
 
         private void Duck(float pressed)
         {
-            Vector3 currentScale = transform.localScale;
-            if (pressed >= 1)
-            {
-                transform.localScale = new Vector3(currentScale.x, currentScale.y * 0.75f, currentScale.z);
-            }
-            else
-            {
-                transform.Translate(new Vector3(0, 1 - 0.75f, 0));
-                transform.localScale = new Vector3(currentScale.x, currentScale.y * (1 / 0.75f), currentScale.z);
-            }
+            _physicsMovement.Duck(pressed);
         }
 
         private void Activate()

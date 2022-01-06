@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Entity.ProjectileShoot
+namespace Components.ProjectileShoot
 {
     public class Shooting : MonoBehaviour
     {
@@ -13,7 +13,7 @@ namespace Entity.ProjectileShoot
 
         [Header("Shooting Times")]
         [SerializeField] private float _timeDelayBetweenShots = 1.0f;
-        private float _lastTimeShootTime = 0.0f;
+        private float _lastTimeShootTime;
 
         [Header("Object Pool")]
         [SerializeField] private ObjectPool.ObjectPool _projectileObjectPool;
@@ -39,13 +39,22 @@ namespace Entity.ProjectileShoot
             // Check if projectile position is empty space
             Vector2 worldProjectilePosition = gameObject.transform.position + _finalShootingPivot;
             
-            Collider2D tmp = Physics2D.OverlapBox(worldProjectilePosition, new Vector2(0.2f, 0.2f), 0f, _noSpawnMask);
-            if (tmp != null) return;
-            
             // Get projectile from object pool
             GameObject projectile = _projectileObjectPool.GetPooledObject();
             if (!projectile) return;
             
+            // Check if projectile spawns inside another object
+            Vector3 projectileDimensions = projectile.transform.localScale;
+            
+            Collider2D tmp = Physics2D.OverlapBox(
+                worldProjectilePosition,
+                new Vector2(projectileDimensions.x, projectileDimensions.y),
+                0f,
+                _noSpawnMask
+            );
+            
+            if (tmp != null) return;
+
             // Shooting direction
             projectile.GetComponent<Projectile>().ChangeProjectileDirection(direction == 0 ? 1 : direction);
             projectile.GetComponent<Projectile>().SetLayerMask(_projectileMask);

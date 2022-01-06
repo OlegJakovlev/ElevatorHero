@@ -1,12 +1,12 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Entity.Health
+namespace Components.Health
 {
     public abstract class EntityHealth : MonoBehaviour, IHealth
     {
         [SerializeField] protected int _maxHealth;
-        protected int _currentHealth;
+        protected int CurrentHealth;
 
         public event Action OnDeath;
         public event Action OnDamageTaken;
@@ -14,13 +14,13 @@ namespace Entity.Health
         protected void Start()
         {
             if (_maxHealth <= 0) Debug.LogWarning("Entity health is less that 0!");
-            _currentHealth = _maxHealth;
+            CurrentHealth = _maxHealth;
         }
 
         public virtual void AddHealth(int amount)
         {
             if (amount <= 0) return;
-            _currentHealth += amount;
+            CurrentHealth += amount;
         }
 
         public virtual void LoseHealth(int amount)
@@ -28,11 +28,11 @@ namespace Entity.Health
             if (amount <= 0) return;
             
             // Update current health
-            _currentHealth -= amount;
+            CurrentHealth -= amount;
             OnDamageTaken?.Invoke();
             
             // Check for current health
-            if (_currentHealth <= 0) Die();
+            if (CurrentHealth <= 0) Die();
             
             // Set entity inactive
             gameObject.SetActive(false);

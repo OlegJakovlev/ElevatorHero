@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Entity.Player
@@ -18,28 +19,34 @@ namespace Entity.Player
         [SerializeField] private float _initialJumpDelayTime = 0.4f;
         [SerializeField] private float _jumpCheckDelay = 0.125f;
         private float _currentJumpDelayTime;
-        
+
+        [Header("Duck")]
+        [SerializeField] private Vector3 _duckSize;
+        private Vector3 _defaultSize;
+
         [Header("Speed")]
         [SerializeField] private float _speed = 1f;
         [SerializeField] private float _airResistanceCoefficient = 0.7f;
-        
+
         private Rigidbody2D _rigidbody;
-        private bool _playAnimation = false;
+        private bool _playAnimation;
 
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
             _jumpAnimation = GetComponent<JumpType>();
+            _defaultSize = transform.localScale;
         }
-
+        
         private void OnEnable()
         {
-            _groundChecker.valueChanged += UpdateGroundedStatus;
+            _groundChecker.ValueChanged += UpdateGroundedStatus;
         }
 
         private void OnDisable()
         {
-            _groundChecker.valueChanged -= UpdateGroundedStatus;
+            _groundChecker.ValueChanged -= UpdateGroundedStatus;
+            gameObject.transform.localScale = _defaultSize;
         }
 
         private void UpdateGroundedStatus()
@@ -108,6 +115,19 @@ namespace Entity.Player
             // Call Jump
             _jumpAnimation.ResetProgress();
             _playAnimation = true;
+        }
+
+        public void Duck(float pressed)
+        {
+            if (pressed > 0)
+            {
+                transform.localScale = _duckSize;
+            }
+            else
+            {
+                transform.Translate(new Vector3(0, (_defaultSize.y - _duckSize.y) / 2, 0));
+                transform.localScale = _defaultSize;
+            }
         }
     }
 }

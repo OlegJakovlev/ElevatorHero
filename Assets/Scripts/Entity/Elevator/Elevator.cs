@@ -31,12 +31,12 @@ namespace Entity.Elevator
         private Rigidbody2D _rigidbody;
         private float _velocity;
         private Vector3 _direction;
-        private bool _manualCalled = false;
+        private bool _manualCalled;
 
         [Header("Level Alarm")]
-        [SerializeField]private LevelTimer _levelTimer;
         [SerializeField] private float _delayTime;
-        private bool _alarmed = false;
+        private LevelTimer _levelTimer;
+        private bool _alarmed;
         
         private void OnTriggerStay2D(Collider2D other)
         {
@@ -60,16 +60,14 @@ namespace Entity.Elevator
             _rigidbody = GetComponent<Rigidbody2D>();
             
             // Simulate elevator delay on each level alarm
-            if (!_levelTimer)
-            {
-                // Get level controller
-                GameObject levelController = GameObject.FindWithTag("LevelManager");
 
-                if (levelController.TryGetComponent(out LevelTimer timer))
-                {
-                    _levelTimer = timer;
-                    _levelTimer.OnAlarm += () => _alarmed = true;
-                }
+            // Get level controller
+            GameObject levelController = GameObject.FindWithTag("LevelManager");
+
+            if (levelController.TryGetComponent(out LevelTimer timer))
+            {
+                _levelTimer = timer;
+                _levelTimer.OnAlarm += () => _alarmed = true;
             }
             
             if (!_levelTimer) Debug.LogWarning("No level timer assigned!");
@@ -111,7 +109,7 @@ namespace Entity.Elevator
 
         private void FixedUpdate()
         {
-            _rigidbody.MovePosition((transform.position + _direction * _velocity * Time.deltaTime)); // TODO: LERP of speed-to-distance_left ratio 
+            _rigidbody.MovePosition((transform.position + _direction * (_velocity * Time.deltaTime))); // TODO: LERP of speed-to-distance_left ratio 
             //_rigidbody.MovePosition((transform.position + (_nextStop.GetPosition() - transform.position) * Time.deltaTime));
         }
 
@@ -138,19 +136,19 @@ namespace Entity.Elevator
 
         private IEnumerator SetNextStopWithDelay(Point newStop)
         {
-            ResetTimerAndVelocity();
-            
-            // Simulate delayed behaviour
+            // Simulate unavailable behaviour
             if (_alarmed)
             {
                 yield return new WaitForSeconds(_delayTime);
+                _alarmed = false;
             }
 
+            _manualCalled = true;
             _currentStopIndex = _stops.FindIndex(stop => stop.GetPosition() == newStop.GetPosition());
             _nextStop = newStop;
-            _manualCalled = true;
 
             UpdateMoveDirection();
+            ResetTimerAndVelocity();
         }
 
         private void UpdateMoveDirection()

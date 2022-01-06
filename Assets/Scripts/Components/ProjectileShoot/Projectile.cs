@@ -1,14 +1,14 @@
-using Entity.Health;
+using Components.Health;
 using UnityEngine;
 
-namespace Entity.ProjectileShoot
+namespace Components.ProjectileShoot
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class Projectile : MonoBehaviour
     {
         [SerializeField] private Vector2 _deltaVelocity;
         private Rigidbody2D _rigidbody;
-        private LayerMask _collisionMask;
+        [SerializeField] private LayerMask _collisionMask;
         
         private void Awake()
         {
@@ -38,9 +38,9 @@ namespace Entity.ProjectileShoot
             _deltaVelocity.x = Mathf.Abs(_deltaVelocity.x) * direction;
         }
 
-        public void SetLayerMask(LayerMask _newMask)
+        public void SetLayerMask(LayerMask newMask)
         {
-            _collisionMask = _newMask;
+            _collisionMask = newMask;
         }
     }
 }

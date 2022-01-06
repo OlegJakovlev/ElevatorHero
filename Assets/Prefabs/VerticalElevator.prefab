@@ -375,6 +375,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   _terminalVelocity: 3
+  _levelTimer: {fileID: 0}
+  _delayTime: 1
 --- !u!50 &8372416852430435158
 Rigidbody2D:
   serializedVersion: 4

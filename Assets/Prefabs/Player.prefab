@@ -311,6 +311,7 @@ MonoBehaviour:
   _jumpAnimation: {fileID: 2545869611535625036}
   _initialJumpDelayTime: 0.45
   _jumpCheckDelay: 0.125
+  _duckSize: {x: 1, y: 1.5, z: 1}
   _speed: 6
   _airResistanceCoefficient: 0.7
 --- !u!114 &2545869611535625036
@@ -325,7 +326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf1158ca3d1430e45bb6f0123de3f6c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heightCoefficient: 5
+  heightCoefficient: 7
   gravityChange:
     serializedVersion: 2
     m_Curve:
@@ -348,8 +349,8 @@ MonoBehaviour:
       inWeight: 0.27458712
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.20183347
-      value: 0.97762007
+      time: 0.17733549
+      value: 1.003541
       inSlope: 0.4794785
       outSlope: 0.4794785
       tangentMode: 0
@@ -359,30 +360,21 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0.5
       value: 0.0000076293945
-      inSlope: -6.344617
-      outSlope: -6.344617
+      inSlope: -2.5528073
+      outSlope: -2.5528073
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.59095204
-      value: -0.8558954
-      inSlope: -4.8704886
-      outSlope: -4.8704886
+      time: 1.0044413
+      value: -1.0065897
+      inSlope: -1.9954698
+      outSlope: -1.9954698
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1.00669
-      value: -0.9932927
-      inSlope: Infinity
-      outSlope: Infinity
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -459,4 +451,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58129d761ab89d04f92fd4af80dcd8c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxVerticalVelocity: 7
+  _maxVerticalVelocity: 10

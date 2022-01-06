@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Entity
+﻿namespace Components
 {
     public interface IActivator
     {

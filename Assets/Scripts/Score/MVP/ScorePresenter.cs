@@ -1,11 +1,9 @@
-﻿using UnityEngine;
-
-namespace Score.MVP
+﻿namespace Score.MVP
 {
     public class ScorePresenter
     {
-        [SerializeField] private ScoreView _view;
-        [SerializeField] private ScoreModel _model;
+        private readonly ScoreView _view;
+        private readonly ScoreModel _model;
 
         public ScorePresenter(ScoreView newView, ScoreModel newModel)
         {

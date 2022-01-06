@@ -1,4 +1,4 @@
-﻿using Entity.ProjectileShoot;
+﻿using Components.ProjectileShoot;
 using UnityEngine;
 
 namespace SpawnManager.Entity

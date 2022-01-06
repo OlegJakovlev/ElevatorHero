@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Entity.Health;
+using Components.Health;
 using Score;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -11,7 +11,8 @@ namespace SpawnManager.Entity
         [Header("Spawner Entity")]
         [SerializeField] protected ObjectPool.ObjectPool _entityPool;
 
-        [Header("Spawner Properties")]
+        [Header("Spawner Properties")] 
+        [SerializeField] protected LayerMask _noSpawnMask;
         [SerializeField] protected float _timeForRespawn = 2f;
         [SerializeField] protected int _entitiesSpawnLimit;
         [SerializeField] protected List<SpawnPoint> _spawnArea;
@@ -64,12 +65,24 @@ namespace SpawnManager.Entity
 
             GameObject newEntity = _entityPool.GetPooledObject();
             if (!newEntity) return;
+
+            // Check if entity spawn overlap happens
+            Vector3 entityDimensions = newEntity.transform.localScale;
+            Vector3 spawnCoordinates = GetSpawnArea().GetRandomSpawnPoint();
+
+            Collider2D collision = Physics2D.OverlapArea(
+                new Vector2(spawnCoordinates.x - entityDimensions.x / 2, spawnCoordinates.y - entityDimensions.y / 2),
+                new Vector2(spawnCoordinates.x + entityDimensions.x / 2, spawnCoordinates.y + entityDimensions.y / 2),
+                _noSpawnMask
+            );
+
+            if (collision != null) return;
             
-            // Spawn new enemy
+            // Spawn new entity
             _spawnedEntities++;
 
             // Teleport to destination and set active
-            newEntity.transform.position = GetSpawnArea().GetRandomSpawnPoint();
+            newEntity.transform.position = spawnCoordinates;
             newEntity.SetActive(true);
         }
 

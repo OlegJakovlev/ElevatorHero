@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Components;
+using UnityEngine;
 
 namespace Entity.Escalator
 {

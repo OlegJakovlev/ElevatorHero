@@ -1,5 +1,4 @@
-﻿using Entity.Health;
-using Entity.Health.PlayerHealth;
+﻿using Components.Health.PlayerHealth;
 
 namespace SpawnManager.Entity
 {

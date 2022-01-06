@@ -111,7 +111,7 @@ NavMeshSettings:
     agentSlope: 45
     agentClimb: 0.4
     ledgeDropHeight: 0
-    maxJumpAcrossDistance: 0
+    maxJumpAcrossDistance: 0.1
     minRegionArea: 2
     manualCellSize: 0
     cellSize: 0.16666667
@@ -381,7 +381,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!61 &95659692
 BoxCollider2D:
@@ -736,6 +736,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _entityPool: {fileID: 525267007}
+  _noSpawnMask:
+    serializedVersion: 2
+    m_Bits: 1984
   _timeForRespawn: 2
   _entitiesSpawnLimit: 10
   _spawnArea:
@@ -743,8 +746,7 @@ MonoBehaviour:
   - {fileID: 981472489}
   _score: {fileID: 51054591}
   _projectilePool: {fileID: 1637485300}
-  _levelTimer: {fileID: 0}
-  _alarmIncreaseAmount: 0
+  _alarmIncreaseAmount: 1
 --- !u!1 &765716056
 GameObject:
   m_ObjectHideFlags: 0
@@ -1100,7 +1102,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1423467641
 Transform:
@@ -1267,6 +1269,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _entityPool: {fileID: 813779582}
+  _noSpawnMask:
+    serializedVersion: 2
+    m_Bits: 128
   _timeForRespawn: 2
   _entitiesSpawnLimit: 1
   _spawnArea:
@@ -1340,7 +1345,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1740821732
 Transform:
@@ -1743,7 +1748,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 4294967263
   m_IsActive: 1
 --- !u!4 &2082930176
 Transform:
