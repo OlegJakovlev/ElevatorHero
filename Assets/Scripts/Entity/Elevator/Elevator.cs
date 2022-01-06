@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = System.Random;
@@ -31,6 +32,11 @@ namespace Entity.Elevator
         private float _velocity;
         private Vector3 _direction;
         private bool _manualCalled = false;
+
+        [Header("Level Alarm")]
+        [SerializeField]private LevelTimer _levelTimer;
+        [SerializeField] private float _delayTime;
+        private bool _alarmed = false;
         
         private void OnTriggerStay2D(Collider2D other)
         {
@@ -52,6 +58,21 @@ namespace Entity.Elevator
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
+            
+            // Simulate elevator delay on each level alarm
+            if (!_levelTimer)
+            {
+                // Get level controller
+                GameObject levelController = GameObject.FindWithTag("LevelManager");
+
+                if (levelController.TryGetComponent(out LevelTimer timer))
+                {
+                    _levelTimer = timer;
+                    _levelTimer.OnAlarm += () => _alarmed = true;
+                }
+            }
+            
+            if (!_levelTimer) Debug.LogWarning("No level timer assigned!");
         }
 
         private void Start()
@@ -112,15 +133,26 @@ namespace Entity.Elevator
 
         public void SetNextStop(Point newStop)
         {
+            StartCoroutine(SetNextStopWithDelay(newStop));
+        }
+
+        private IEnumerator SetNextStopWithDelay(Point newStop)
+        {
             ResetTimerAndVelocity();
             
+            // Simulate delayed behaviour
+            if (_alarmed)
+            {
+                yield return new WaitForSeconds(_delayTime);
+            }
+
             _currentStopIndex = _stops.FindIndex(stop => stop.GetPosition() == newStop.GetPosition());
             _nextStop = newStop;
             _manualCalled = true;
 
             UpdateMoveDirection();
         }
-        
+
         private void UpdateMoveDirection()
         {
             if (_isVertical)

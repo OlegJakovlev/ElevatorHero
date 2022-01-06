@@ -1,54 +1,56 @@
 ﻿using System.Collections.Generic;
 using Entity.Health;
-using Entity.ProjectileShoot;
+using Score;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace SpawnManager.Entity
 {
-    public class EntitySpawner : MonoBehaviour, ISpawner
+    public abstract class EntitySpawner : MonoBehaviour, ISpawner
     {
         [Header("Spawner Entity")]
-        [SerializeField] private ObjectPool.ObjectPool _entityPool;
+        [SerializeField] protected ObjectPool.ObjectPool _entityPool;
 
         [Header("Spawner Properties")]
-        [SerializeField] private float _timeForRespawn = 2f;
-        [SerializeField] private int _entitiesSpawnLimit;
-        [SerializeField] private List<SpawnPoint> _spawnArea;
+        [SerializeField] protected float _timeForRespawn = 2f;
+        [SerializeField] protected int _entitiesSpawnLimit;
+        [SerializeField] protected List<SpawnPoint> _spawnArea;
 
-        [Header("Entities pools")]
-        [SerializeField] private ObjectPool.ObjectPool _projectilePool;
+        [Header("Object properties")]
+        [SerializeField] protected ScoreSetup _score;
 
-        private bool _active = true;
+        protected bool Active = true;
         private int _spawnedEntities;
 
-        private void Start()
+        protected virtual void Awake()
+        {
+            if (!_score)
+            {
+                // Get global controller
+                GameObject globalController = GameObject.FindWithTag("GameController");
+
+                if (globalController.TryGetComponent(out ScoreSetup score))
+                {
+                    _score = score;
+                }
+            }
+        }
+
+        protected virtual void Start()
         {
             // Add events only once hence we use object pools
             foreach (var entity in _entityPool.GetAllPooledObjects())
             {
-                // Set projectile pool for entities
-                if (entity.TryGetComponent(out Shooting shooting))
-                {
-                    shooting.SetProjectilePool(_projectilePool);
-                }
-            
-                // If entity is player, respawn with lower health
-                if (entity.TryGetComponent(out PlayerHealth playerHealth))
-                {
-                    playerHealth.OnDamageTaken += () => Invoke(nameof(ReduceActiveEntities), _timeForRespawn);
-                    playerHealth.OnDeath += () => _active = false;
-                }
-                else if (entity.TryGetComponent(out EntityHealth entityHealth))
+                if (entity.TryGetComponent(out EntityHealth entityHealth))
                 {
                     entityHealth.OnDeath += () => Invoke(nameof(ReduceActiveEntities), _timeForRespawn);
                 }
             }
         }
 
-        private void Update()
+        protected void Update()
         {
-            if (_active) Spawn();
+            if (Active) Spawn();
         }
 
         public void Spawn()
@@ -71,13 +73,13 @@ namespace SpawnManager.Entity
             newEntity.SetActive(true);
         }
 
-        private SpawnPoint GetSpawnArea()
+        protected SpawnPoint GetSpawnArea()
         {
             if (_spawnArea.Count <= 0) return null;
             return _spawnArea[Random.Range(0, _spawnArea.Count)];
         }
 
-        private void ReduceActiveEntities()
+        protected void ReduceActiveEntities()
         {
             _spawnedEntities--;
         }

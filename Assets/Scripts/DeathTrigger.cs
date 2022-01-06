@@ -1,4 +1,5 @@
 using Entity.Health;
+using Entity.Health.PlayerHealth;
 using UnityEngine;
 
 public class DeathTrigger : MonoBehaviour

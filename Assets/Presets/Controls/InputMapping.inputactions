@@ -30,12 +30,20 @@
                     "interactions": "Press(behavior=2)"
                 },
                 {
-                    "name": "Actiovation",
+                    "name": "Activation",
                     "type": "Button",
                     "id": "a64d77c1-19ab-4ec4-bf8d-2c4af473c42c",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
+                },
+                {
+                    "name": "Duck",
+                    "type": "Button",
+                    "id": "0611d7ca-f6cf-464c-800c-4d1c8c4e39c0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
                 }
             ],
             "bindings": [
@@ -151,7 +159,7 @@
                 },
                 {
                     "name": "negative",
-                    "id": "1a8b3aed-28d4-4f9e-a865-479597fc7655",
+                    "id": "20fb4428-70fa-4785-a86d-0984261a95ac",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
@@ -184,7 +192,7 @@
                 },
                 {
                     "name": "negative",
-                    "id": "a6ce234c-7dfc-4b72-93a2-66d77247b01f",
+                    "id": "ce9bd69a-22a6-4199-a42a-c99dacfaff81",
                     "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
@@ -200,7 +208,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
-                    "action": "Actiovation",
+                    "action": "Activation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "05b3f1f0-d1b9-4300-9b14-ef7fc675e3ff",
+                    "path": "<Keyboard>/leftCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Duck",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "485f130a-ed01-4786-b040-f8b00053beff",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Duck",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

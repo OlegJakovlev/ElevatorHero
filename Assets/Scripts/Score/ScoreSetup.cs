@@ -39,10 +39,5 @@ namespace Score
         {
             _presenter.ReduceScore(500);
         }
-        
-        public void SetView(ScoreView newView)
-        {
-            _view = newView;
-        }
     }
 }

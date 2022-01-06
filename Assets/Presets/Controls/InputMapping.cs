@@ -43,12 +43,20 @@ public class @InputMapping : IInputActionCollection, IDisposable
                     ""interactions"": ""Press(behavior=2)""
                 },
                 {
-                    ""name"": ""Actiovation"",
+                    ""name"": ""Activation"",
                     ""type"": ""Button"",
                     ""id"": ""a64d77c1-19ab-4ec4-bf8d-2c4af473c42c"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""Duck"",
+                    ""type"": ""Button"",
+                    ""id"": ""0611d7ca-f6cf-464c-800c-4d1c8c4e39c0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)""
                 }
             ],
             ""bindings"": [
@@ -164,7 +172,7 @@ public class @InputMapping : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""negative"",
-                    ""id"": ""1a8b3aed-28d4-4f9e-a865-479597fc7655"",
+                    ""id"": ""20fb4428-70fa-4785-a86d-0984261a95ac"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -197,7 +205,7 @@ public class @InputMapping : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""negative"",
-                    ""id"": ""a6ce234c-7dfc-4b72-93a2-66d77247b01f"",
+                    ""id"": ""ce9bd69a-22a6-4199-a42a-c99dacfaff81"",
                     ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -213,7 +221,29 @@ public class @InputMapping : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""Actiovation"",
+                    ""action"": ""Activation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""05b3f1f0-d1b9-4300-9b14-ef7fc675e3ff"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Duck"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""485f130a-ed01-4786-b040-f8b00053beff"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Duck"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -244,7 +274,8 @@ public class @InputMapping : IInputActionCollection, IDisposable
         m_Character_Shoot = m_Character.FindAction("Shoot", throwIfNotFound: true);
         m_Character_Movement = m_Character.FindAction("Movement", throwIfNotFound: true);
         m_Character_Jump = m_Character.FindAction("Jump", throwIfNotFound: true);
-        m_Character_Actiovation = m_Character.FindAction("Actiovation", throwIfNotFound: true);
+        m_Character_Activation = m_Character.FindAction("Activation", throwIfNotFound: true);
+        m_Character_Duck = m_Character.FindAction("Duck", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -297,7 +328,8 @@ public class @InputMapping : IInputActionCollection, IDisposable
     private readonly InputAction m_Character_Shoot;
     private readonly InputAction m_Character_Movement;
     private readonly InputAction m_Character_Jump;
-    private readonly InputAction m_Character_Actiovation;
+    private readonly InputAction m_Character_Activation;
+    private readonly InputAction m_Character_Duck;
     public struct CharacterActions
     {
         private @InputMapping m_Wrapper;
@@ -305,7 +337,8 @@ public class @InputMapping : IInputActionCollection, IDisposable
         public InputAction @Shoot => m_Wrapper.m_Character_Shoot;
         public InputAction @Movement => m_Wrapper.m_Character_Movement;
         public InputAction @Jump => m_Wrapper.m_Character_Jump;
-        public InputAction @Actiovation => m_Wrapper.m_Character_Actiovation;
+        public InputAction @Activation => m_Wrapper.m_Character_Activation;
+        public InputAction @Duck => m_Wrapper.m_Character_Duck;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -324,9 +357,12 @@ public class @InputMapping : IInputActionCollection, IDisposable
                 @Jump.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnJump;
-                @Actiovation.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnActiovation;
-                @Actiovation.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnActiovation;
-                @Actiovation.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnActiovation;
+                @Activation.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnActivation;
+                @Activation.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnActivation;
+                @Activation.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnActivation;
+                @Duck.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnDuck;
+                @Duck.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnDuck;
+                @Duck.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnDuck;
             }
             m_Wrapper.m_CharacterActionsCallbackInterface = instance;
             if (instance != null)
@@ -340,9 +376,12 @@ public class @InputMapping : IInputActionCollection, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
-                @Actiovation.started += instance.OnActiovation;
-                @Actiovation.performed += instance.OnActiovation;
-                @Actiovation.canceled += instance.OnActiovation;
+                @Activation.started += instance.OnActivation;
+                @Activation.performed += instance.OnActivation;
+                @Activation.canceled += instance.OnActivation;
+                @Duck.started += instance.OnDuck;
+                @Duck.performed += instance.OnDuck;
+                @Duck.canceled += instance.OnDuck;
             }
         }
     }
@@ -361,6 +400,7 @@ public class @InputMapping : IInputActionCollection, IDisposable
         void OnShoot(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnActiovation(InputAction.CallbackContext context);
+        void OnActivation(InputAction.CallbackContext context);
+        void OnDuck(InputAction.CallbackContext context);
     }
 }

@@ -35,7 +35,7 @@ namespace Entity.ProjectileShoot
 
         public void ChangeProjectileDirection(float direction)
         {
-            _deltaVelocity.x *= direction;
+            _deltaVelocity.x = Mathf.Abs(_deltaVelocity.x) * direction;
         }
 
         public void SetLayerMask(LayerMask _newMask)

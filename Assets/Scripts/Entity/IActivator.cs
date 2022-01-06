@@ -1,4 +1,6 @@
-﻿namespace Entity
+﻿using UnityEngine;
+
+namespace Entity
 {
     public interface IActivator
     {

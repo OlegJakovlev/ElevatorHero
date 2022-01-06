@@ -1,4 +1,4 @@
-﻿namespace Entity.Health
+﻿namespace Entity.Health.PlayerHealth
 {
     public class PlayerHealth : EntityHealth
     {

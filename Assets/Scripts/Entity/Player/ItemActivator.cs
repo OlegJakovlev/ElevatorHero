@@ -26,7 +26,7 @@ namespace Entity.Player
 
         public void CallElevator(float direction)
         {
-            if (_currentElevator == null) return;
+            if (_currentElevator == null || direction == 0) return;
 
             if (direction > 0)
             {
@@ -36,6 +36,11 @@ namespace Entity.Player
             {
                 _currentElevator.CallDown();
             }
+        }
+
+        public bool AnyElevator()
+        {
+            return (_currentElevator != null);
         }
 
         private void OnTriggerEnter2D(Collider2D newCollider)

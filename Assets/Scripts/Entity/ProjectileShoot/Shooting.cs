@@ -4,7 +4,8 @@ namespace Entity.ProjectileShoot
 {
     public class Shooting : MonoBehaviour
     {
-        [SerializeField] private LayerMask _mask;
+        [SerializeField] private LayerMask _noSpawnMask;
+        [SerializeField] private LayerMask _projectileMask;
         
         [Header("Shooting Point")]
         [SerializeField] private Transform _shootingPivot;
@@ -38,7 +39,7 @@ namespace Entity.ProjectileShoot
             // Check if projectile position is empty space
             Vector2 worldProjectilePosition = gameObject.transform.position + _finalShootingPivot;
             
-            Collider2D tmp = Physics2D.OverlapBox(worldProjectilePosition, new Vector2(0.2f, 0.2f), 0f, _mask);
+            Collider2D tmp = Physics2D.OverlapBox(worldProjectilePosition, new Vector2(0.2f, 0.2f), 0f, _noSpawnMask);
             if (tmp != null) return;
             
             // Get projectile from object pool
@@ -47,7 +48,7 @@ namespace Entity.ProjectileShoot
             
             // Shooting direction
             projectile.GetComponent<Projectile>().ChangeProjectileDirection(direction == 0 ? 1 : direction);
-            projectile.GetComponent<Projectile>().SetLayerMask(_mask);
+            projectile.GetComponent<Projectile>().SetLayerMask(_projectileMask);
             
             // Move projectile to pivot and shift by direction
             projectile.transform.position = worldProjectilePosition;

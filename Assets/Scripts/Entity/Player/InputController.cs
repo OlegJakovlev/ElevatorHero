@@ -32,7 +32,8 @@ namespace Entity.Player
             _controls.Character.Shoot.performed += context => _shooting.ShootEvent(_lastNonZeroMovementVector.x);
             _controls.Character.Movement.performed += context => Move(context.ReadValue<float>());
             _controls.Character.Jump.performed += context => Jump(context.ReadValue<float>());
-            _controls.Character.Actiovation.performed += context => Activate();
+            _controls.Character.Duck.performed += context => Duck(context.ReadValue<float>());
+            _controls.Character.Activation.performed += context => Activate();
         }
 
         private void OnEnable()
@@ -59,9 +60,25 @@ namespace Entity.Player
         
         private void Jump(float direction)
         {
+            // Try to use elevator
             _itemActivator.CallElevator(direction);
+            
             _movementVector.y = direction;
             if (direction != 0) _lastNonZeroMovementVector.y = direction;
+        }
+
+        private void Duck(float pressed)
+        {
+            Vector3 currentScale = transform.localScale;
+            if (pressed >= 1)
+            {
+                transform.localScale = new Vector3(currentScale.x, currentScale.y * 0.75f, currentScale.z);
+            }
+            else
+            {
+                transform.Translate(new Vector3(0, 1 - 0.75f, 0));
+                transform.localScale = new Vector3(currentScale.x, currentScale.y * (1 / 0.75f), currentScale.z);
+            }
         }
 
         private void Activate()

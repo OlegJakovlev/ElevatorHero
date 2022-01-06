@@ -116,14 +116,15 @@ GameObject:
   - component: {fileID: 2545869611535625042}
   - component: {fileID: 2545869611535625043}
   - component: {fileID: 2545869611535625038}
+  - component: {fileID: 2545869611535625037}
   - component: {fileID: 2545869611535625040}
   - component: {fileID: 2545869611535625039}
-  - component: {fileID: 2545869611535625037}
   - component: {fileID: 2545869611535625036}
   - component: {fileID: 2545869611535625035}
   - component: {fileID: 2545869611535625034}
   - component: {fileID: 5734785935923492728}
   - component: {fileID: 8971865000451379135}
+  - component: {fileID: 9191175730378231789}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -243,37 +244,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &2545869611535625040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2545869611535625045}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6171dbcf95d42f4c97c58279358f281, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2545869611535625039
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2545869611535625045}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2ee66d6d43dc3d4fa921639cfa611ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _groundChecker: {fileID: 2545869610196851991}
-  _initialGroundDelayTime: 0.2
-  _jumpAnimation: {fileID: 2545869611535625036}
-  _initialJumpDelayTime: 0.45
-  _jumpCheckDelay: 0.125
-  _speed: 6
-  _airResistanceCoefficient: 0.7
 --- !u!114 &2545869611535625037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,6 +282,37 @@ MonoBehaviour:
   m_DefaultActionMap: Character
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &2545869611535625040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2545869611535625045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6171dbcf95d42f4c97c58279358f281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2545869611535625039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2545869611535625045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2ee66d6d43dc3d4fa921639cfa611ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _groundChecker: {fileID: 2545869610196851991}
+  _initialGroundDelayTime: 0.2
+  _jumpAnimation: {fileID: 2545869611535625036}
+  _initialJumpDelayTime: 0.45
+  _jumpCheckDelay: 0.125
+  _speed: 6
+  _airResistanceCoefficient: 0.7
 --- !u!114 &2545869611535625036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,9 +398,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 068e773f839d854418710f2bddc84169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mask:
+  _noSpawnMask:
     serializedVersion: 2
-    m_Bits: 320
+    m_Bits: 1088
+  _projectileMask:
+    serializedVersion: 2
+    m_Bits: 1856
   _shootingPivot: {fileID: 2545869611400505560}
   _timeDelayBetweenShots: 0.35
   _projectileObjectPool: {fileID: 0}
@@ -417,7 +421,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mask:
     serializedVersion: 2
-    m_Bits: 119
+    m_Bits: 1536
 --- !u!114 &5734785935923492728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -443,3 +447,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 3
+--- !u!114 &9191175730378231789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2545869611535625045}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58129d761ab89d04f92fd4af80dcd8c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxVerticalVelocity: 7
