@@ -1,7 +1,8 @@
-﻿namespace Components.Health.PlayerHealth
+﻿using UnityEngine;
+
+namespace Components.Health.PlayerHealth
 {
     public class PlayerHealth : EntityHealth
     {
-        
     }
 }

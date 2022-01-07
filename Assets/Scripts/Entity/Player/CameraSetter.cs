@@ -1,4 +1,5 @@
 ﻿using System;
+using PlayCamera;
 using UnityEngine;
 
 namespace Entity.Player
@@ -9,7 +10,7 @@ namespace Entity.Player
         {
             try
             {
-                if (Camera.main.TryGetComponent(out CameraMovement movement))
+                if (Camera.main is { } && Camera.main.TryGetComponent(out CameraMovement movement))
                 {
                     movement.SetObjectToFollow(this);
                 }

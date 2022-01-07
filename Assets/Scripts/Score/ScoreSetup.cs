@@ -25,14 +25,19 @@ namespace Score
             _presenter.Disable();
         }
 
+        public ScoreModel GetModel()
+        {
+            return _model;
+        }
+        
         public void PlayerKillEnemy()
         {
-            _presenter.IncreaseScore(500);
+            _presenter.IncreaseScore(100);
         }
         
         public void PlayerOpenDoor()
         {
-            _presenter.IncreaseScore(200);
+            _presenter.IncreaseScore(500);
         }
 
         public void PlayerKillCitizen()
