@@ -37,6 +37,11 @@ namespace Score
         
         public void PlayerOpenDoor()
         {
+            _presenter.IncreaseScore(250);
+        }
+        
+        public void PlayerSaveHostage()
+        {
             _presenter.IncreaseScore(500);
         }
 

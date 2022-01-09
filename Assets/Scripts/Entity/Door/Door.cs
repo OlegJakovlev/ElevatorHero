@@ -1,29 +1,19 @@
-using Components;
-using Score;
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Entity.Door
 {
-    public class Door : MonoBehaviour, IActivator
+    public class Door : MonoBehaviour
     {
-        [SerializeField] private ScoreSetup _score;
-    
+        [SerializeField] private DoorManager _doorManager;
+        
         [SerializeField] private GameObject _doorShield;
         [SerializeField] private bool _inversed;
 
-        private void Awake()
-        {
-            if (!_score)
-            {
-                // Get global controller
-                GameObject globalController = GameObject.FindWithTag("GameController");
-
-                if (globalController.TryGetComponent(out ScoreSetup score))
-                {
-                    _score = score;
-                }
-            }
-        }
+        [Header("Safe teleport")] 
+        [SerializeField] private int _teleportPercentChance = 25;
+        public bool IsSafe { get; set; } = true;
 
         private void Start()
         {
@@ -37,11 +27,19 @@ namespace Entity.Door
             _doorShield.SetActive(false);
         }
 
-        public void Activate()
+        public void Use(GameObject player)
         {
-            _score.PlayerOpenDoor();
-        
-            // Play animation?
+            // Teleport player to safe door with some chance
+            if (Random.Range(1, 100) > _teleportPercentChance) return;
+            
+            // Get safe door coordinates
+            Transform safeDoorCoordinates = _doorManager.GetSafeDoor().transform;
+            print(safeDoorCoordinates.position);
+            
+            if (!safeDoorCoordinates) return;
+            
+            // Teleport player
+            player.transform.position = safeDoorCoordinates.position;
         }
     }
 }

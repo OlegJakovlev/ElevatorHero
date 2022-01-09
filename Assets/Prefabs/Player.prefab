@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 2545869610196851992}
   - component: {fileID: 2545869610196851991}
   - component: {fileID: 2545869610196851990}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -373,7 +373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _noSpawnMask:
     serializedVersion: 2
-    m_Bits: 1088
+    m_Bits: 64
   _projectileMask:
     serializedVersion: 2
     m_Bits: 5952
@@ -394,7 +394,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mask:
     serializedVersion: 2
-    m_Bits: 3584
+    m_Bits: 11776
 --- !u!114 &5734785935923492728
 MonoBehaviour:
   m_ObjectHideFlags: 0

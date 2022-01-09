@@ -14,6 +14,7 @@
         public void Enable()
         {
             _model.ScoreUpdated += UpdateScore;
+            UpdateScore();
         }
 
         public void Disable()

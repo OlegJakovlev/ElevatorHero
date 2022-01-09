@@ -50,7 +50,8 @@ namespace Entity.Player
             
             if (newCollider.gameObject.TryGetComponent(out IActivator activator))
             {
-                _currentActivationItemsInRange.Add(activator);
+                // Add items only once
+                if (!_currentActivationItemsInRange.Contains(activator)) _currentActivationItemsInRange.Add(activator);
             }
         }
 

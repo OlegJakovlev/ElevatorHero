@@ -38,11 +38,13 @@ namespace Entity.Player
 
         private void OnEnable()
         {
+            ResetControls();
             _controls.Enable();
         }
 
         private void OnDisable()
         {
+            ResetControls();
             _controls.Disable();
         }
 
@@ -50,6 +52,20 @@ namespace Entity.Player
         {
             _physicsMovement.ApplyHorizontal(_movementVector.x);
             _physicsMovement.ApplyVertical(_movementVector.y);
+        }
+
+        private void ResetControls()
+        {
+            // Reset movement vectors
+            _movementVector = Vector2.zero;
+            _lastNonZeroMovementVector = Vector2.right;
+            
+            // Release state of controls
+            _controls.Character.Shoot.Dispose();
+            _controls.Character.Movement.Dispose();
+            _controls.Character.Jump.Dispose();
+            _controls.Character.Duck.Dispose();
+            _controls.Character.Activation.Dispose();
         }
 
         private void Move(float direction)
