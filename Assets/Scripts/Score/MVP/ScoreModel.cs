@@ -10,17 +10,7 @@ namespace Score.MVP
 
         public void AddScore(int amount)
         {
-            if (amount <= 0) return;
-
             Score += amount;
-            ScoreUpdated?.Invoke();
-        }
-
-        public void ReduceScore(int amount)
-        {
-            if (amount <= 0) return;
-            
-            Score -= amount;
             ScoreUpdated?.Invoke();
         }
     }

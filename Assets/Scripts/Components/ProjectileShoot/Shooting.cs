@@ -1,9 +1,11 @@
+using System;
 using UnityEngine;
 
 namespace Components.ProjectileShoot
 {
     public class Shooting : MonoBehaviour
     {
+        [SerializeField] private int _newProjectileLayer;
         [SerializeField] private LayerMask _noSpawnMask;
         [SerializeField] private LayerMask _projectileMask;
         
@@ -55,10 +57,12 @@ namespace Components.ProjectileShoot
             
             if (tmp != null) return;
 
-            // Shooting direction
-            projectile.GetComponent<Projectile>().ChangeProjectileDirection(direction == 0 ? 1 : direction);
-            projectile.GetComponent<Projectile>().SetLayerMask(_projectileMask);
-            
+            // Set Shooting direction, collision layer mask and layer of object itself
+            Projectile projectileComponent = projectile.GetComponent<Projectile>();
+            projectileComponent.ChangeProjectileDirection(direction == 0 ? 1 : direction);
+            projectileComponent.SetLayerMask(_projectileMask);
+            projectileComponent.SetLayer(_newProjectileLayer);
+
             // Move projectile to pivot and shift by direction
             projectile.transform.position = worldProjectilePosition;
             projectile.SetActive(true);

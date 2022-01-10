@@ -1,4 +1,5 @@
 ﻿using Components.Health.PlayerHealth;
+using SaveAndLoadSystem;
 
 namespace SpawnManager.Entity
 {
@@ -15,7 +16,11 @@ namespace SpawnManager.Entity
                 if (entity.TryGetComponent(out PlayerHealth playerHealth))
                 {
                     playerHealth.OnDamageTaken += () => Invoke(nameof(ReduceActiveEntities), _timeForRespawn);
-                    playerHealth.OnDeath += () => Active = false;
+                    playerHealth.OnDeath += () =>
+                    {
+                        Active = false;
+                        Serializer.SaveLoadManager.Save();
+                    };
                 }
             }
         }

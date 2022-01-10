@@ -24,14 +24,7 @@
 
         public void IncreaseScore(int amount)
         {
-            if (amount <= 0) return;
             _model.AddScore(amount);
-        }
-
-        public void ReduceScore(int amount)
-        {
-            if (amount <= 0) return;
-            _model.ReduceScore(amount);
         }
 
         private void UpdateScore()

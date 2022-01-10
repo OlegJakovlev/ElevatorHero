@@ -31,6 +31,8 @@ namespace SaveAndLoadSystem
             
             _crypto = new AES(EncryptionKey, IvKey);
             _data = new GameData();
+
+            Load();
         }
 
         public void Save()
@@ -74,7 +76,7 @@ namespace SaveAndLoadSystem
             _copiedData = JsonUtility.FromJson<GameData>(jsonFromFile);
 
             // Load saved values
-            _copiedData.LoadDataToGame();
+            _data.LoadDataToGame(_copiedData);
         }
     }
 }

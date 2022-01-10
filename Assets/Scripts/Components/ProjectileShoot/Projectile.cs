@@ -42,5 +42,10 @@ namespace Components.ProjectileShoot
         {
             _collisionMask = newMask;
         }
+
+        public void SetLayer(int newLayer)
+        {
+            gameObject.layer = newLayer;
+        }
     }
 }

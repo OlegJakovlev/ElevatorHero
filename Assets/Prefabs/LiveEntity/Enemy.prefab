@@ -79,6 +79,7 @@ MonoBehaviour:
   _mask:
     serializedVersion: 2
     m_Bits: 128
+  _firstShootDelay: 1
 --- !u!1 &4455174985408068117
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,9 +301,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 068e773f839d854418710f2bddc84169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _newProjectileLayer: 13
   _noSpawnMask:
     serializedVersion: 2
-    m_Bits: 1088
+    m_Bits: 64
   _projectileMask:
     serializedVersion: 2
     m_Bits: 5824
@@ -323,7 +325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mask:
     serializedVersion: 2
-    m_Bits: 119
+    m_Bits: 2560
 --- !u!114 &82270754
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -371,12 +371,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 068e773f839d854418710f2bddc84169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _newProjectileLayer: 12
   _noSpawnMask:
     serializedVersion: 2
     m_Bits: 64
   _projectileMask:
     serializedVersion: 2
-    m_Bits: 5952
+    m_Bits: 59200
   _shootingPivot: {fileID: 2545869611400505560}
   _timeDelayBetweenShots: 0.35
   _projectileObjectPool: {fileID: 0}
@@ -394,7 +395,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mask:
     serializedVersion: 2
-    m_Bits: 11776
+    m_Bits: 52736
 --- !u!114 &5734785935923492728
 MonoBehaviour:
   m_ObjectHideFlags: 0

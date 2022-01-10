@@ -18,10 +18,10 @@ TagManager:
   - Elevator
   - Door
   - Escalator
-  - Projectile
+  - PlayerProjectile
+  - EnemyProjectile
   - Hostage
-  - 
-  - 
+  - Civilian
   - 
   - 
   - 

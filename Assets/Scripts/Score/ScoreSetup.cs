@@ -5,6 +5,14 @@ namespace Score
 {
     public class ScoreSetup : MonoBehaviour
     {
+        [Header("Scores")] 
+        [SerializeField] private int _openDoor;
+        [SerializeField] private int _saveHostage;
+        [SerializeField] private int _killEnemy;
+        [SerializeField] private int _killCitizen;
+        [SerializeField] private int _givePapersToCitizen;
+        
+        [Header("MVP")]
         [SerializeField] private ScoreView _view;
         private ScoreModel _model;
         private ScorePresenter _presenter;
@@ -32,22 +40,27 @@ namespace Score
         
         public void PlayerKillEnemy()
         {
-            _presenter.IncreaseScore(100);
+            _presenter.IncreaseScore(_killEnemy);
         }
         
         public void PlayerOpenDoor()
         {
-            _presenter.IncreaseScore(250);
+            _presenter.IncreaseScore(_openDoor);
         }
         
         public void PlayerSaveHostage()
         {
-            _presenter.IncreaseScore(500);
+            _presenter.IncreaseScore(_saveHostage);
         }
 
         public void PlayerKillCitizen()
         {
-            _presenter.ReduceScore(500);
+            _presenter.IncreaseScore(_killCitizen);
+        }
+
+        public void PlayerGiveCitizenPapers()
+        {
+            _presenter.IncreaseScore(_givePapersToCitizen);
         }
     }
 }
