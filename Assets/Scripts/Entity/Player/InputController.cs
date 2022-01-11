@@ -29,11 +29,11 @@ namespace Entity.Player
             _shooting = GetComponent<Shooting>();
             _itemActivator = GetComponent<ItemActivator>();
             
-            _controls.Character.Shoot.performed += context => _shooting.ShootEvent(_lastNonZeroMovementVector.x);
+            _controls.Character.Shoot.performed += _ => _shooting.ShootEvent(_lastNonZeroMovementVector.x);
             _controls.Character.Movement.performed += context => Move(context.ReadValue<float>());
             _controls.Character.Jump.performed += context => Jump(context.ReadValue<float>());
             _controls.Character.Duck.performed += context => Duck(context.ReadValue<float>());
-            _controls.Character.Activation.performed += context => Activate();
+            _controls.Character.Activation.performed += _ => Activate();
         }
 
         private void OnEnable()

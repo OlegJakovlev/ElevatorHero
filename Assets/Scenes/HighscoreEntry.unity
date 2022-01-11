@@ -1529,7 +1529,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press Fire To Enter Initial
+  m_Text: Press Fire When Finish
 --- !u!222 &1449323821
 CanvasRenderer:
   m_ObjectHideFlags: 0
