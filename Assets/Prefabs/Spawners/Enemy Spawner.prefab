@@ -133,6 +133,7 @@ MonoBehaviour:
   - {fileID: 2314480814172837219}
   _score: {fileID: 0}
   _projectilePool: {fileID: 0}
+  _spawnDelayTimer: 1
   _alarmIncreaseAmount: 1
 --- !u!1 &2314480814172837228
 GameObject:

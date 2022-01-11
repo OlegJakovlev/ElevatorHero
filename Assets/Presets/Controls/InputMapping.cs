@@ -248,6 +248,126 @@ public class @InputMapping : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""UI"",
+            ""id"": ""676d13be-6d1a-4f27-8e40-5c9c35230e55"",
+            ""actions"": [
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""5ebebb57-2bbf-47c8-9dec-8b5be951f43d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""NavigateHorizontally"",
+                    ""type"": ""Button"",
+                    ""id"": ""d678d6a8-2866-4ecd-bb6d-0358ad8c5726"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""NavigateVertically"",
+                    ""type"": ""Button"",
+                    ""id"": ""9d9490af-39d1-414e-9865-5f9fdde5e70c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""fc08a450-afe7-4601-9358-cede3e28a7e7"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""914f044f-d0fe-49ed-a785-7185ed4d43ce"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""LeftAndRight"",
+                    ""id"": ""91361e4d-971f-4396-8e10-9f51dd2761ea"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NavigateHorizontally"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""92d80715-4b09-4edf-a027-0263b57b8d0c"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NavigateHorizontally"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""1f23befb-91c9-4595-89dd-0a812c77e4a2"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NavigateHorizontally"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""UpAndDown"",
+                    ""id"": ""6e8c556a-ea30-4693-9399-603fb91091a2"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NavigateVertically"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""33924806-5e35-44ee-9ac0-802c1645a6d7"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NavigateVertically"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""5383f771-92a8-479a-a5ec-4c3e9d299cc5"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NavigateVertically"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -276,6 +396,11 @@ public class @InputMapping : IInputActionCollection, IDisposable
         m_Character_Jump = m_Character.FindAction("Jump", throwIfNotFound: true);
         m_Character_Activation = m_Character.FindAction("Activation", throwIfNotFound: true);
         m_Character_Duck = m_Character.FindAction("Duck", throwIfNotFound: true);
+        // UI
+        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
+        m_UI_Select = m_UI.FindAction("Select", throwIfNotFound: true);
+        m_UI_NavigateHorizontally = m_UI.FindAction("NavigateHorizontally", throwIfNotFound: true);
+        m_UI_NavigateVertically = m_UI.FindAction("NavigateVertically", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -386,6 +511,55 @@ public class @InputMapping : IInputActionCollection, IDisposable
         }
     }
     public CharacterActions @Character => new CharacterActions(this);
+
+    // UI
+    private readonly InputActionMap m_UI;
+    private IUIActions m_UIActionsCallbackInterface;
+    private readonly InputAction m_UI_Select;
+    private readonly InputAction m_UI_NavigateHorizontally;
+    private readonly InputAction m_UI_NavigateVertically;
+    public struct UIActions
+    {
+        private @InputMapping m_Wrapper;
+        public UIActions(@InputMapping wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Select => m_Wrapper.m_UI_Select;
+        public InputAction @NavigateHorizontally => m_Wrapper.m_UI_NavigateHorizontally;
+        public InputAction @NavigateVertically => m_Wrapper.m_UI_NavigateVertically;
+        public InputActionMap Get() { return m_Wrapper.m_UI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
+        public void SetCallbacks(IUIActions instance)
+        {
+            if (m_Wrapper.m_UIActionsCallbackInterface != null)
+            {
+                @Select.started -= m_Wrapper.m_UIActionsCallbackInterface.OnSelect;
+                @Select.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnSelect;
+                @Select.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnSelect;
+                @NavigateHorizontally.started -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigateHorizontally;
+                @NavigateHorizontally.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigateHorizontally;
+                @NavigateHorizontally.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigateHorizontally;
+                @NavigateVertically.started -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigateVertically;
+                @NavigateVertically.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigateVertically;
+                @NavigateVertically.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigateVertically;
+            }
+            m_Wrapper.m_UIActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Select.started += instance.OnSelect;
+                @Select.performed += instance.OnSelect;
+                @Select.canceled += instance.OnSelect;
+                @NavigateHorizontally.started += instance.OnNavigateHorizontally;
+                @NavigateHorizontally.performed += instance.OnNavigateHorizontally;
+                @NavigateHorizontally.canceled += instance.OnNavigateHorizontally;
+                @NavigateVertically.started += instance.OnNavigateVertically;
+                @NavigateVertically.performed += instance.OnNavigateVertically;
+                @NavigateVertically.canceled += instance.OnNavigateVertically;
+            }
+        }
+    }
+    public UIActions @UI => new UIActions(this);
     private int m_KeyboardandMouseSchemeIndex = -1;
     public InputControlScheme KeyboardandMouseScheme
     {
@@ -402,5 +576,11 @@ public class @InputMapping : IInputActionCollection, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnActivation(InputAction.CallbackContext context);
         void OnDuck(InputAction.CallbackContext context);
+    }
+    public interface IUIActions
+    {
+        void OnSelect(InputAction.CallbackContext context);
+        void OnNavigateHorizontally(InputAction.CallbackContext context);
+        void OnNavigateVertically(InputAction.CallbackContext context);
     }
 }

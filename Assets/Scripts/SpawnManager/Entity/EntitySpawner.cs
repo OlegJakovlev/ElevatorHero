@@ -49,7 +49,7 @@ namespace SpawnManager.Entity
             }
         }
 
-        protected void Update()
+        protected virtual void Update()
         {
             if (Active) Spawn();
         }
@@ -86,7 +86,7 @@ namespace SpawnManager.Entity
             newEntity.SetActive(true);
         }
 
-        protected SpawnPoint GetSpawnArea()
+        private SpawnPoint GetSpawnArea()
         {
             if (_spawnArea.Count <= 0) return null;
             return _spawnArea[Random.Range(0, _spawnArea.Count)];

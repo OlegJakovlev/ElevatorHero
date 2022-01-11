@@ -5,6 +5,10 @@ namespace SpawnManager.Entity
 {
     public class EnemySpawner : AggressiveSpawner
     {
+        [Header("Spawner properties")] 
+        [SerializeField] private float _spawnDelayTimer;
+
+        [Header("Alarm settings")]
         [SerializeField] private int _alarmIncreaseAmount;
         private LevelTimer _levelTimer;
 
@@ -38,6 +42,13 @@ namespace SpawnManager.Entity
                     entityHealth.OnDeath += () => _score.PlayerKillEnemy();
                 }
             }
+            
+            InvokeRepeating(nameof(Spawn), 0, _spawnDelayTimer);
+        }
+
+        protected override void Update()
+        {
+            // Do nothing
         }
     }
 }

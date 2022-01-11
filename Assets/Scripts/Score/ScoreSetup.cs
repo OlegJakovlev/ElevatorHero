@@ -11,6 +11,7 @@ namespace Score
         [SerializeField] private int _killEnemy;
         [SerializeField] private int _killCitizen;
         [SerializeField] private int _givePapersToCitizen;
+        [SerializeField] private int _finishTheLevel;
         
         [Header("MVP")]
         [SerializeField] private ScoreView _view;
@@ -61,6 +62,11 @@ namespace Score
         public void PlayerGiveCitizenPapers()
         {
             _presenter.IncreaseScore(_givePapersToCitizen);
+        }
+
+        public void PlayerFinishLevel()
+        {
+            _presenter.IncreaseScore(_finishTheLevel);
         }
     }
 }
