@@ -31,14 +31,12 @@ namespace Entity.Door
             // Teleport player to safe door with some chance
             if (Random.Range(1, 100) > _teleportPercentChance) return;
             
-            // Get safe door coordinates
-            Transform safeDoorCoordinates = _doorManager.GetSafeDoor().transform;
-            print(safeDoorCoordinates.position);
+            // Get safe door
+            Door safeDoor = _doorManager.GetSafeDoor();
+            if (!safeDoor) return;
             
-            if (!safeDoorCoordinates) return;
-            
-            // Teleport player
-            player.transform.position = safeDoorCoordinates.position;
+            // Teleport player to safe door coordinates
+            player.transform.position = safeDoor.transform.position;
         }
     }
 }

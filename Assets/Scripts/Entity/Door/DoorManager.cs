@@ -21,7 +21,7 @@ namespace Entity.Door
 
         public Door GetSafeDoor()
         {
-            return _allDoors.Select(activator => activator.GetDoor()).FirstOrDefault(safeDoor => safeDoor.IsSafe);
+            return _allDoors.Select(activator => activator.GetDoor()).FirstOrDefault(potentialSafeDoor => potentialSafeDoor.gameObject.activeInHierarchy && potentialSafeDoor.IsSafe);
         }
     }
 }

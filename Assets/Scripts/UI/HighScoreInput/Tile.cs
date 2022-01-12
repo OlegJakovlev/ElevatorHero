@@ -5,6 +5,7 @@ namespace UI.HighScoreInput
 {
     public class Tile : MonoBehaviour
     {
+        [SerializeField] private Image _image;
         [SerializeField] private Text _textComponent;
         
         private readonly char[] _letters = 
@@ -26,8 +27,35 @@ namespace UI.HighScoreInput
 
         private int _selectedLetterIndex;
 
-        public bool IsActive { get; set; } = false;
+        public bool IsActive
+        {
+            get => _isSet;
+            set
+            {
+                // Animation using coroutines
+                if (value) InvokeRepeating(nameof(ToggleImage), 0, 0.5f);
+                else
+                {
+                    CancelInvoke();
+                    ResetImageState();
+                }
 
+                _isSet = value;
+            }
+        }
+        
+        private bool _isSet = false;
+
+        private void ResetImageState()
+        {
+            _image.enabled = true;
+        }
+
+        private void ToggleImage()
+        {
+            _image.enabled = !_image.enabled;
+        }
+        
         public void SelectNextLetter()
         {
             // Select next or first letter

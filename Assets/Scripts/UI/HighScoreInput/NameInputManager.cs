@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -26,6 +25,7 @@ namespace UI.HighScoreInput
         private void Start()
         {
             _selectedTile = _inputTiles[0];
+            _selectedTile.IsActive = true;
         }
 
         private void OnEnable()
