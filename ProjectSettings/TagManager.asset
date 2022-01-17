@@ -42,3 +42,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: LiveEntities
+    uniqueID: 165414761
+    locked: 0
+  - name: Enemy
+    uniqueID: 2895160345
+    locked: 0
+  - name: Player
+    uniqueID: 602147727
+    locked: 0

@@ -1492,7 +1492,7 @@ Transform:
   - {fileID: 1732550268}
   m_Father: {fileID: 1045066851}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &1189703155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3782,6 +3782,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 837912933738457310, guid: 6a587a34428d4574f85dd4857eec0bd0, type: 3}
+      propertyPath: m_Size.y
+      value: 0.7503805
+      objectReference: {fileID: 0}
+    - target: {fileID: 837912933738457310, guid: 6a587a34428d4574f85dd4857eec0bd0, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.12480974
+      objectReference: {fileID: 0}
     - target: {fileID: 837912934791808292, guid: 6a587a34428d4574f85dd4857eec0bd0, type: 3}
       propertyPath: m_RootOrder
       value: 10

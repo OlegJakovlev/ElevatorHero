@@ -34,7 +34,7 @@ namespace Entity.Enemy
             }
             catch (Exception e)
             {
-                Debug.Log(gameObject.GetInstanceID());
+                Debug.Log(e + gameObject.GetInstanceID().ToString());
             }
         }
     }
