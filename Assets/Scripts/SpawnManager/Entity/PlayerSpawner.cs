@@ -1,10 +1,13 @@
 ﻿using Components.Health.PlayerHealth;
-using SaveAndLoadSystem;
+using UnityEngine;
 
 namespace SpawnManager.Entity
 {
     public class PlayerSpawner : AggressiveSpawner
     {
+        [Header("Object Properties")]
+        [SerializeField] private PlayerHealthView _healthView;
+        
         protected override void Start()
         {
             base.Start();
@@ -12,14 +15,18 @@ namespace SpawnManager.Entity
             // Add events only once hence we use object pools
             foreach (var entity in _entityPool.GetAllPooledObjects())
             {
-                // If entity is player, respawn on damage taken
                 if (entity.TryGetComponent(out PlayerHealth playerHealth))
                 {
+                    // Set model for view
+                    _healthView.SetModel(playerHealth);
+                    
+                    // If entity is player, respawn on damage taken
                     playerHealth.OnDamageTaken += () => Invoke(nameof(ReduceActiveEntities), _timeForRespawn);
                     playerHealth.OnDeath += () =>
                     {
+                        // Disable respawn
                         Active = false;
-                        Serializer.SaveLoadManager.Save();
+                        HighScoreManager.Instance.CheckForHighScore();
                     };
                 }
             }

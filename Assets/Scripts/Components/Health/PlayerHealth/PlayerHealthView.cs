@@ -1,14 +1,16 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Components.Health.PlayerHealth
 {
     public class PlayerHealthView : MonoBehaviour
     {
-        [SerializeField] private PlayerHealth _model;
+        private PlayerHealth _model;
 
-        private void Awake()
+        public void SetModel(PlayerHealth newModel)
         {
+            _model = newModel;
+            
+            // Assign new events
             _model.OnDamageTaken += () => print("Player lose health!");
             _model.OnDeath += () => print("Player is dead!");
         }

@@ -27,12 +27,12 @@ namespace UI
         }
         protected bool IsSet = false;
 
-        protected void ResetImageState()
+        protected virtual void ResetImageState()
         {
             _image.enabled = _defaultIsSet;
         }
 
-        protected void ToggleImage()
+        protected virtual void ToggleImage()
         {
             _image.enabled = !_image.enabled;
         }

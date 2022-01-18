@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using SaveAndLoadSystem;
 
 namespace UI.HighScoreInput
 {
     public class NameInputManager : SelectOptionManager
     {
+        private string _playerName;
+
         private void Awake()
         {
             Controls = new InputMapping();
@@ -26,8 +25,14 @@ namespace UI.HighScoreInput
         
         protected override void Finish()
         {
-            // Save highscore
+            _playerName = "";
             
+            foreach (var inputOption in _inputOptions)
+            {
+                _playerName += ((Tile) inputOption).SelectedLetter;
+            }
+            Serializer.SaveLoadManager.Save(_playerName);
+
             base.Finish();
         }
     }

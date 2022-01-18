@@ -15,6 +15,7 @@ namespace Entity.Elevator
         [SerializeField] private List<Point> _stops;
         private int _currentStopIndex;
         private Point _nextStop;
+        private Point _previousStop;
         private readonly Random _rng = new Random();
         
         [Header("Stop Timers")]
@@ -29,6 +30,7 @@ namespace Entity.Elevator
         [SerializeField] private LayerMask _mask;
         [SerializeField] private float _terminalVelocity;
         private Rigidbody2D _rigidbody;
+        private Rigidbody2D _playerRigidbody;
         private float _velocity;
         private Vector3 _direction;
         private bool _manualCalled;
@@ -58,12 +60,11 @@ namespace Entity.Elevator
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
-            
-            // Simulate elevator delay on each level alarm
 
             // Get level controller
             GameObject levelController = GameObject.FindWithTag("LevelManager");
 
+            // Simulate elevator delay on each level alarm
             if (levelController.TryGetComponent(out LevelTimer timer))
             {
                 _levelTimer = timer;
@@ -81,8 +82,8 @@ namespace Entity.Elevator
         
         private void Update()
         {
-            // Check if we are on correct stop
-            if (Vector3.Distance(_nextStop.GetPosition(), transform.position) <= _maxDifference)
+            if ((_isVertical && Mathf.Abs(_nextStop.GetPosition().y - transform.position.y) <= _maxDifference) || 
+                (!_isVertical && Mathf.Abs(_nextStop.GetPosition().x - transform.position.x) <= _maxDifference))
             {
                 // Stop here
                 _velocity = 0;
@@ -109,8 +110,16 @@ namespace Entity.Elevator
 
         private void FixedUpdate()
         {
-            _rigidbody.MovePosition((transform.position + _direction * (_velocity * Time.deltaTime))); // TODO: LERP of speed-to-distance_left ratio 
-            //_rigidbody.MovePosition((transform.position + (_nextStop.GetPosition() - transform.position) * Time.deltaTime));
+            float difference = (_isVertical) ? transform.position.y - _nextStop.GetPosition().y : transform.position.x - _nextStop.GetPosition().x;
+
+            float appliedVelocity =
+                Mathf.Lerp(
+                    _velocity,
+                    _velocity * 0.5f,
+                    Mathf.Abs(1 / difference)
+                );
+            
+            _rigidbody.MovePosition(transform.position + _direction * (appliedVelocity * Time.deltaTime));
         }
 
         private void ChooseRandomNextStop()
@@ -124,6 +133,9 @@ namespace Entity.Elevator
                 _currentStopIndex = _rng.Next(0, _stops.Count);
                 newStop = _stops[_currentStopIndex];
             }
+
+            // Save current stop and set new
+            _previousStop = _nextStop;
             _nextStop = newStop;
             
             UpdateMoveDirection();
@@ -148,6 +160,9 @@ namespace Entity.Elevator
 
             _manualCalled = true;
             _currentStopIndex = _stops.FindIndex(stop => stop.GetPosition() == newStop.GetPosition());
+            
+            // Save current stop and set new
+            _previousStop = _nextStop;
             _nextStop = newStop;
 
             UpdateMoveDirection();

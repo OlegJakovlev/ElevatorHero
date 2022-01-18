@@ -4,13 +4,14 @@ using UnityEngine;
 
 namespace SaveAndLoadSystem
 {
+    [RequireComponent(typeof(ScoreSetup))]
     public class Serializer : MonoBehaviour
     {
         // Create global object
         public static Serializer SaveLoadManager;
         
         // Game objects data to be saved / load
-        [SerializeField] private ScoreSetup _score;
+        private ScoreSetup _score;
         
         // Object to get/set data
         private GameData _data;
@@ -26,22 +27,22 @@ namespace SaveAndLoadSystem
 
         private void Awake()
         {
+            _score = GetComponent<ScoreSetup>();
+            
             if (SaveLoadManager) Destroy(gameObject);
             SaveLoadManager = this;
-            
+
             _crypto = new AES(EncryptionKey, IvKey);
             _data = new GameData();
 
             Load();
         }
 
-        public void Save()
+        public void Save(string playerName)
         {
             // Get all needed to save data
-            _data.CollectDataToSave(
-                _score.GetModel()
-            );
-        
+            _data.CollectDataToSave(playerName, _score.GetModel());
+
             // Convert data to json
             string json = JsonUtility.ToJson(_data);
 
@@ -77,6 +78,11 @@ namespace SaveAndLoadSystem
 
             // Load saved values
             _data.LoadDataToGame(_copiedData);
+        }
+
+        public GameData GetModel()
+        {
+            return _data;
         }
     }
 }

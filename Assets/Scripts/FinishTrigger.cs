@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using Components.Health.PlayerHealth;
 using Score;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,8 +8,7 @@ using UnityEngine.SceneManagement;
 public class FinishTrigger : MonoBehaviour
 {
     [SerializeField] private LayerMask _mask;
-    [SerializeField] private GameObject _loadScreen;
-    [SerializeField] private int _nextSceneID;
+    [SerializeField] private bool _lastLevel;
     
     [Header("Score")]
     [SerializeField] private ScoreSetup _score;
@@ -31,22 +32,12 @@ public class FinishTrigger : MonoBehaviour
         if ((_mask.value & (1 << newCollider.gameObject.layer)) > 0)
         {
             _score.PlayerFinishLevel();
-            StartCoroutine(LoadNextSceneAsync());
+            
+            // Load next level
+            if (!_lastLevel)
+                CustomSceneManager.Instance.LoadNextSceneAsync();
+            else
+                HighScoreManager.Instance.CheckForHighScore();
         }
-    }
-
-    private IEnumerator LoadNextSceneAsync()
-    {
-        if (_loadScreen) _loadScreen.SetActive(true);
-
-        // Async
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(_nextSceneID);
-
-        while(!asyncLoad.isDone)
-        {
-            yield return null;
-        }
-        
-        if (_loadScreen) _loadScreen.SetActive(false);
     }
 }

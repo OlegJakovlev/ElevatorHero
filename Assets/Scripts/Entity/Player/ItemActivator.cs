@@ -47,7 +47,7 @@ namespace Entity.Player
             {
                 _currentElevator = elevator;
             }
-            
+
             if (newCollider.gameObject.TryGetComponent(out IActivator activator))
             {
                 // Add items only once
@@ -61,7 +61,7 @@ namespace Entity.Player
             {
                 _currentElevator = null;
             }
-            
+
             if (newCollider.gameObject.TryGetComponent(out IActivator activator))
             {
                 _currentActivationItemsInRange.Remove(activator);

@@ -1,9 +1,13 @@
-﻿namespace UI.HighScoreInput
+﻿using UnityEngine;
+
+namespace UI.HighScoreInput
 {
     public class Tile : Option
     {
+        [SerializeField] private GameObject _arrowImages;
+        
         private readonly char[] _letters = 
-            {'a','b','c','d','e','f','g','h','i', 
+            {' ', 'a','b','c','d','e','f','g','h','i', 
              'j','k','l','m','n','o','p','q','r',
              's','t','u','v','w','x','y','z'};
 
@@ -16,8 +20,19 @@
                 _textComponent.text = value.ToString();
             }
         }
-        private char _selectedLetter = 'a';
+        
+        private char _selectedLetter = ' ';
         private int _selectedLetterIndex;
+
+        protected override void ToggleImage()
+        {
+            if (_arrowImages) _arrowImages.SetActive(!_arrowImages.activeSelf);
+        }
+
+        protected override void ResetImageState()
+        {
+            if (_arrowImages) _arrowImages.SetActive(false);
+        }
 
         public void SelectNextLetter()
         {

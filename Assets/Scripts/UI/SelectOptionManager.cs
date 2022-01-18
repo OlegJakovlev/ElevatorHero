@@ -66,18 +66,7 @@ namespace UI
 
         protected virtual void Finish()
         {
-            StartCoroutine(LoadNextSceneAsync());
-        }
-
-        private IEnumerator LoadNextSceneAsync()
-        {
-            // Async
-            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
-
-            while(!asyncLoad.isDone)
-            {
-                yield return null;
-            }
+            CustomSceneManager.Instance.LoadNextSceneAsync();
         }
     }
 }

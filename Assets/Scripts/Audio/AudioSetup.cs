@@ -7,6 +7,8 @@ namespace Audio
 {
     public class AudioSetup : MonoBehaviour
     {
+        public static AudioSetup Instance;
+        
         // Initialize audio mixers for sound and sound
         [SerializeField] private AudioMixerGroup _soundMixerGroup;
         [SerializeField] private AudioMixerGroup _musicMixerGroup;
@@ -20,7 +22,14 @@ namespace Audio
         [SerializeField] private AudioView _view;
         private AudioModel _model;
         private AudioPresenter _presenter;
-        
+
+        private void Awake()
+        {
+            if (!Instance)
+                Instance = this;
+            else Destroy(gameObject);
+        }
+
         public void Start()
         {
             _model = new AudioModel(

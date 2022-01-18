@@ -121,12 +121,11 @@ namespace Entity.Player
         {
             if (pressed > 0)
             {
-                transform.localScale = _duckSize;
+                //transform.localScale = _duckSize;
             }
             else
             {
-                transform.Translate(new Vector3(0, (_defaultSize.y - _duckSize.y) / 2, 0));
-                transform.localScale = _defaultSize;
+                //transform.localScale = _defaultSize;
             }
         }
     }
