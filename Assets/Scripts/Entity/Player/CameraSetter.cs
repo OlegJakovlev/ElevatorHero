@@ -10,7 +10,7 @@ namespace Entity.Player
         {
             try
             {
-                if (Camera.main is { } && Camera.main.TryGetComponent(out CameraMovement movement))
+                if (Camera.main != null && Camera.main.TryGetComponent(out CameraMovement movement))
                 {
                     movement.SetObjectToFollow(this);
                 }

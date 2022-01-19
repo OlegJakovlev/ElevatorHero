@@ -1,14 +1,16 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI
+namespace UI.Select
 {
     public class Option : MonoBehaviour
     {
         [SerializeField] protected Image _image;
         [SerializeField] protected Text _textComponent;
+        [SerializeField] protected Button _button;
 
         [SerializeField] protected bool _defaultIsSet;
+
         public bool IsActive
         {
             get => IsSet;
@@ -34,7 +36,12 @@ namespace UI
 
         protected virtual void ToggleImage()
         {
-            _image.enabled = !_image.enabled;
+            if (_image) _image.enabled = !_image.enabled;
+        }
+
+        public virtual void OnSelect()
+        {
+            if (_button) _button.onClick.Invoke();
         }
     }
 }

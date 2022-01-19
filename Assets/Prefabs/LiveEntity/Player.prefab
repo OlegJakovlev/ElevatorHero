@@ -377,7 +377,7 @@ MonoBehaviour:
     m_Bits: 64
   _projectileMask:
     serializedVersion: 2
-    m_Bits: 59200
+    m_Bits: 59201
   _shootingPivot: {fileID: 2545869611400505560}
   _timeDelayBetweenShots: 0.35
   _projectileObjectPool: {fileID: 0}

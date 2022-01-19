@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-namespace UI
+namespace UI.Select
 {
     public class SelectOptionManager : MonoBehaviour
     {
@@ -66,7 +64,7 @@ namespace UI
 
         protected virtual void Finish()
         {
-            CustomSceneManager.Instance.LoadNextSceneAsync();
+            SelectedOption.OnSelect();
         }
     }
 }

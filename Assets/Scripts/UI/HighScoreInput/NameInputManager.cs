@@ -1,4 +1,5 @@
 ﻿using SaveAndLoadSystem;
+using UI.Select;
 
 namespace UI.HighScoreInput
 {
@@ -33,7 +34,7 @@ namespace UI.HighScoreInput
             }
             Serializer.SaveLoadManager.Save(_playerName);
 
-            base.Finish();
+            CustomSceneManager.Instance.LoadNextSceneAsync();
         }
     }
 }

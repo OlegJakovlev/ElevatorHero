@@ -60,8 +60,8 @@ namespace Audio.MVP
 
         public void SetMixerValues(float newSoundLevel, float newMusicLevel)
         {
-            _soundMixerGroup.audioMixer.SetFloat("MusicVolume", newSoundLevel);
-            _musicMixerGroup.audioMixer.SetFloat("SoundVolume", newMusicLevel);
+            _soundMixerGroup.audioMixer.SetFloat("MusicVolume", Mathf.Log10(newSoundLevel) * 20);
+            _musicMixerGroup.audioMixer.SetFloat("SoundVolume", Mathf.Log10(newMusicLevel) * 20);
         }
     }
 }

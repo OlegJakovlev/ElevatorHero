@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace Entity.Door
@@ -12,7 +13,15 @@ namespace Entity.Door
 
         [Header("Safe teleport")] 
         [SerializeField] private int _teleportPercentChance = 25;
-        public bool IsSafe { get; set; } = true;
+
+        [SerializeField] private bool _safeByDefault = true;
+        public bool IsSafe
+        {
+            get => _isSafe && _safeByDefault;
+            set => _isSafe = value;
+        }
+
+        private bool _isSafe = true;
 
         private void Start()
         {

@@ -86,6 +86,7 @@ MonoBehaviour:
   - {fileID: 8160446245728215297}
   _score: {fileID: 0}
   _projectilePool: {fileID: 0}
+  _healthView: {fileID: 0}
 --- !u!1 &8160446245728215299
 GameObject:
   m_ObjectHideFlags: 0

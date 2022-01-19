@@ -1,4 +1,5 @@
 ﻿using Components.Health.PlayerHealth;
+using SaveAndLoadSystem.HighScore;
 using UnityEngine;
 
 namespace SpawnManager.Entity
@@ -7,7 +8,13 @@ namespace SpawnManager.Entity
     {
         [Header("Object Properties")]
         [SerializeField] private PlayerHealthView _healthView;
-        
+
+        protected override void Awake()
+        {
+            base.Awake();
+            _healthView = GameObject.FindWithTag("Player").GetComponent<PlayerHealthView>();
+        }
+
         protected override void Start()
         {
             base.Start();

@@ -10,7 +10,7 @@ namespace Entity.Player
         public event Action ValueChanged; 
         public bool IsGrounded { get; private set; }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        private void OnTriggerStay2D(Collider2D other)
         {
             if ((_whatIsGround.value & (1 << other.transform.gameObject.layer)) <= 0) return;
             

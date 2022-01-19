@@ -24,7 +24,7 @@ namespace SaveAndLoadSystem
             // As high score table consists of 10 element, no need for binary search
             for (int index = 0; index < _highScoreTable.Length - 1; index++)
             {
-                if (scoreModelScore > _highScoreTable[index]._score)
+                if (scoreModelScore >= _highScoreTable[index]._score)
                 {
                     // Shift operation from end till index
                     for (int shiftIndex = _highScoreTable.Length - 1; shiftIndex > index; shiftIndex--)
