@@ -1,4 +1,4 @@
-﻿namespace Score.MVP
+﻿namespace Components.Score.MVP
 {
     public class ScorePresenter
     {

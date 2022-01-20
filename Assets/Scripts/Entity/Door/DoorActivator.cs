@@ -1,9 +1,10 @@
 ﻿using Components;
-using Score;
+using Components.Score;
 using UnityEngine;
 
 namespace Entity.Door
 {
+    [RequireComponent(typeof(Collider2D))]
     public class DoorActivator : MonoBehaviour, IActivator
     {
         [SerializeField] private Door _door;
@@ -12,9 +13,16 @@ namespace Entity.Door
         private GameObject _player;
         
         [SerializeField] private ScoreSetup _score;
+        [SerializeField] private Collider2D _entryTrigger;
+
+        [Header("Visuals")]
+        [SerializeField] private SpriteRenderer _renderer;
+        [SerializeField] private Sprite _spriteToReplaceFor;
         
         private void Awake()
         {
+            _entryTrigger = GetComponent<Collider2D>();
+            
             if (!_score)
             {
                 // Get global controller
@@ -31,7 +39,12 @@ namespace Entity.Door
         {
             _score.PlayerOpenDoor();
             _door.Use(_player);
-            gameObject.SetActive(false);
+            
+            // Disable entry trigger
+            //_entryTrigger.enabled = false;
+            
+            // Replace sprite permanently
+            _renderer.sprite = _spriteToReplaceFor;
         }
 
         public Door GetDoor()

@@ -49,6 +49,7 @@ MonoBehaviour:
   _doorShield: {fileID: 5733989953870398266}
   _inversed: 0
   _teleportPercentChance: 25
+  _safeByDefault: 1
 --- !u!61 &5733989953616348131
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -113,7 +114,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5733989953870398266}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -143,6 +144,7 @@ GameObject:
   - component: {fileID: 5733989953912235863}
   - component: {fileID: 6271633764827106452}
   - component: {fileID: 7618175550491338244}
+  - component: {fileID: 7114945941190157804}
   m_Layer: 10
   m_Name: ObjectiveDoor
   m_TagString: Untagged
@@ -212,6 +214,28 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 384
   _score: {fileID: 0}
+  _entryTrigger: {fileID: 5733989953870398264}
+  _renderer: {fileID: 2939856664953300620}
+  _spriteToReplaceFor: {fileID: 21300000, guid: 935640e16d5799c4b8e9c9a7b487e169, type: 3}
+--- !u!95 &7114945941190157804
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5733989953912235862}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7ef9a91e397f8c7459224586a4768e97, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5733989954801947249
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ namespace Entity.Player
     [RequireComponent(typeof(PhysicsMovement))]
     [RequireComponent(typeof(Shooting))]
     [RequireComponent(typeof(ItemActivator))]
+    [RequireComponent(typeof(SpriteFlipper))]
     public class InputController : MonoBehaviour
     {
         // Input actions mapping
@@ -22,12 +23,16 @@ namespace Entity.Player
         [Header("Item Activator")]
         private ItemActivator _itemActivator;
 
+        [Header("Visuals")] 
+        private SpriteFlipper _spriteFlipper;
+
         private void Awake()
         {
             _controls = new InputMapping();
             _physicsMovement = GetComponent<PhysicsMovement>();
             _shooting = GetComponent<Shooting>();
             _itemActivator = GetComponent<ItemActivator>();
+            _spriteFlipper = GetComponent<SpriteFlipper>();
             
             _controls.Character.Shoot.performed += _ => _shooting.ShootEvent(_lastNonZeroMovementVector.x);
             _controls.Character.Movement.performed += context => Move(context.ReadValue<float>());
@@ -71,7 +76,11 @@ namespace Entity.Player
         private void Move(float direction)
         {
             _movementVector.x = direction;
-            if (direction != 0) _lastNonZeroMovementVector.x = direction;
+            if (direction != 0)
+            {
+                _lastNonZeroMovementVector.x = direction;
+                _spriteFlipper.FlipSprite(direction > 0);
+            }
         }
         
         private void Jump(float direction)

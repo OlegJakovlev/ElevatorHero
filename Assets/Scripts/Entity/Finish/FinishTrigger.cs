@@ -1,5 +1,5 @@
+using Components.Score;
 using SaveAndLoadSystem.HighScore;
-using Score;
 using UnityEngine;
 
 namespace Entity.Finish

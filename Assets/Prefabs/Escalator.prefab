@@ -230,6 +230,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7720131831190921409}
   - component: {fileID: 7720131831190921414}
+  - component: {fileID: 8383581228353278705}
   m_Layer: 11
   m_Name: Escalator
   m_TagString: Untagged
@@ -265,6 +266,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1437b91470984eb19f5fbfaa0c1c73ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &8383581228353278705
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7720131831190921408}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 39c08dbedb6054540aa79ef6ffcdb39b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7720131831662284120
 GameObject:
   m_ObjectHideFlags: 0

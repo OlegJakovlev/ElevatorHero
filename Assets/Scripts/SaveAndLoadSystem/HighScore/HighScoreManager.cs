@@ -1,4 +1,4 @@
-using Score;
+using Components.Score;
 using UnityEngine;
 
 namespace SaveAndLoadSystem.HighScore
@@ -6,19 +6,29 @@ namespace SaveAndLoadSystem.HighScore
     [RequireComponent(typeof(ScoreSetup))]
     public class HighScoreManager : MonoBehaviour
     {
-        public static HighScoreManager Instance;
+        public static HighScoreManager Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = FindObjectOfType(typeof(HighScoreManager)) as HighScoreManager;
+ 
+                return _instance;
+            }
+            
+            private set => _instance = (_instance == null) ? value : null;
+        }
+        private static HighScoreManager _instance;
     
         [Header("Score")]
         private ScoreSetup _score;
         private HighScoreEntry[] _highScoreTable;
 
-        private int _newHighScore;
+        public int NewHighScore { get; private set; }
 
         private void Awake()
         {
-            if (!Instance) Instance = this;
-            else Destroy(gameObject);
-        
+            Instance = this;
             _score = GetComponent<ScoreSetup>();
         }
 
@@ -26,21 +36,29 @@ namespace SaveAndLoadSystem.HighScore
         {
             _highScoreTable = Serializer.SaveLoadManager.GetModel()._highScoreTable;
         }
+        
+        public void ResetHighScore()
+        {
+            NewHighScore = 0;
+        }
 
         public void CheckForHighScore()
         {
             int currentScore = _score.GetModel().Score;
 
-            // If player score is same or higher than last place, player should be teleported to enter his name
+            // If player score is same or higher than last place, player should enter his name
             if (_highScoreTable == null || currentScore >= _highScoreTable[_highScoreTable.Length - 1]._score)
             {
+                NewHighScore = currentScore;
                 CustomSceneManager.Instance.LoadSceneByName("HighscoreEntry");
-                _newHighScore = currentScore;
             }
             else
             {
                 CustomSceneManager.Instance.LoadSceneByName("HighscoreTable");
             }
+            
+            // Reset score
+            _score.GetModel().ResetScore();
         }
     }
 }

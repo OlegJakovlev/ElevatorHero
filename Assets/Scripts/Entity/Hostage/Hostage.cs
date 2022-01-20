@@ -1,6 +1,5 @@
-using System;
 using Components;
-using Score;
+using Components.Score;
 using UnityEngine;
 
 namespace Entity.Hostage

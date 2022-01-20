@@ -1,6 +1,5 @@
 ﻿using System;
 using SaveAndLoadSystem.HighScore;
-using Score.MVP;
 
 namespace SaveAndLoadSystem
 {
@@ -9,9 +8,10 @@ namespace SaveAndLoadSystem
     {
         public HighScoreEntry[] _highScoreTable = new HighScoreEntry[10];
 
-        public void CollectDataToSave(string playerName, ScoreModel scoreModel)
+        public void CollectDataToSave(string playerName, int newScore)
         {
-            TryUpdateHighScore(playerName, scoreModel.Score);
+            TryUpdateHighScore(playerName, newScore);
+            HighScoreManager.Instance.ResetHighScore();
         }
 
         public void LoadDataToGame(GameData dataToLoad)

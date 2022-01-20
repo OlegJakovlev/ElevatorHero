@@ -1,5 +1,6 @@
 ﻿using System.IO;
-using Score;
+using Components.Score;
+using SaveAndLoadSystem.HighScore;
 using UnityEngine;
 
 namespace SaveAndLoadSystem
@@ -7,12 +8,21 @@ namespace SaveAndLoadSystem
     [RequireComponent(typeof(ScoreSetup))]
     public class Serializer : MonoBehaviour
     {
-        // Create global object
-        public static Serializer SaveLoadManager;
+        public static Serializer SaveLoadManager
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = FindObjectOfType(typeof(Serializer)) as Serializer;
+ 
+                return _instance;
+            }
+            
+            private set => _instance = (_instance == null) ? value : null;
+        }
         
-        // Game objects data to be saved / load
-        private ScoreSetup _score;
-        
+        private static Serializer _instance;
+
         // Object to get/set data
         private GameData _data;
         private GameData _copiedData;
@@ -27,9 +37,6 @@ namespace SaveAndLoadSystem
 
         private void Awake()
         {
-            _score = GetComponent<ScoreSetup>();
-            
-            if (SaveLoadManager) Destroy(gameObject);
             SaveLoadManager = this;
 
             _crypto = new AES(EncryptionKey, IvKey);
@@ -41,7 +48,7 @@ namespace SaveAndLoadSystem
         public void Save(string playerName)
         {
             // Get all needed to save data
-            _data.CollectDataToSave(playerName, _score.GetModel());
+            _data.CollectDataToSave(playerName, HighScoreManager.Instance.NewHighScore);
 
             // Convert data to json
             string json = JsonUtility.ToJson(_data);
@@ -62,7 +69,7 @@ namespace SaveAndLoadSystem
             File.WriteAllBytes(filename, soup);
         }
 
-        public void Load()
+        private void Load()
         {
             // Generate filename
             string filename = Path.Combine(Application.persistentDataPath, SaveFile);

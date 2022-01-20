@@ -5,13 +5,27 @@ using UnityEngine.SceneManagement;
 
 public class CustomSceneManager : MonoBehaviour
 {
-    public static CustomSceneManager Instance;
+    public static CustomSceneManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+                _instance = FindObjectOfType(typeof(CustomSceneManager)) as CustomSceneManager;
+
+            return _instance;
+        }
+
+        private set => _instance = (_instance == null) ? value : null;
+    }
+
+    private static CustomSceneManager _instance;
 
     [SerializeField] private GameObject _loadScreen;
+    [SerializeField] private GameObject _mainMenu;
+    [SerializeField] private GameObject _gameCanvas;
 
     private void Awake()
     {
-        if (Instance) Destroy(gameObject);
         Instance = this;
     }
 
@@ -24,6 +38,12 @@ public class CustomSceneManager : MonoBehaviour
     {
         if (_loadScreen) _loadScreen.SetActive(true);
 
+        if (sceneName == "Menu")
+        {
+            _mainMenu.SetActive(true);
+            _gameCanvas.SetActive(false);
+        }
+        
         int newScene = SceneUtility.GetBuildIndexByScenePath("Scenes/" + sceneName);
         if (newScene == -1) yield return null;
         

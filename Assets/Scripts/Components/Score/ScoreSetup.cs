@@ -1,7 +1,7 @@
-using Score.MVP;
+using Components.Score.MVP;
 using UnityEngine;
 
-namespace Score
+namespace Components.Score
 {
     public class ScoreSetup : MonoBehaviour
     {

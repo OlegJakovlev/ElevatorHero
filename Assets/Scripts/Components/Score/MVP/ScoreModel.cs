@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Score.MVP
+namespace Components.Score.MVP
 {
     public class ScoreModel
     {
@@ -11,6 +11,12 @@ namespace Score.MVP
         public void AddScore(int amount)
         {
             Score += amount;
+            ScoreUpdated?.Invoke();
+        }
+
+        public void ResetScore()
+        {
+            Score = 0;
             ScoreUpdated?.Invoke();
         }
     }

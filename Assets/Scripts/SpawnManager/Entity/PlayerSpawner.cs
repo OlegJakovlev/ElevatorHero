@@ -12,7 +12,7 @@ namespace SpawnManager.Entity
         protected override void Awake()
         {
             base.Awake();
-            _healthView = GameObject.FindWithTag("Player").GetComponent<PlayerHealthView>();
+            _healthView = GameObject.FindWithTag("PlayerUI").GetComponent<PlayerHealthView>();
         }
 
         protected override void Start()

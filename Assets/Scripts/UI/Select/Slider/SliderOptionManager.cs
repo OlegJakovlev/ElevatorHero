@@ -1,4 +1,6 @@
-﻿namespace UI.Select.Slider
+﻿using System;
+
+namespace UI.Select.Slider
 {
     public class SliderOptionManager : SelectOptionManager
     {
@@ -14,9 +16,16 @@
         private void EvaluateSlider(float direction)
         {
             if (direction == 0) return;
-            
-            if (direction > 0) ((SliderOption) SelectedOption).IncreaseValue();
-            else ((SliderOption) SelectedOption).DecreaseValue();
+
+            try
+            {
+                if (direction > 0) ((SliderOption)SelectedOption).IncreaseValue();
+                else ((SliderOption)SelectedOption).DecreaseValue();
+            }
+            catch (InvalidCastException)
+            {
+                //
+            }
         }
     }
 }

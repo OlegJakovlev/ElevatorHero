@@ -14,15 +14,15 @@ namespace Entity.Player
         private float _lastTimeGrounded;
         private bool _isGrounded;
 
+        [Header("Walls")] 
+        [SerializeField] private WallChecker _wallChecker;
+        private bool _isWalled;
+
         [Header("Jump")]
         [SerializeField] private JumpType _jumpAnimation;
         [SerializeField] private float _initialJumpDelayTime = 0.4f;
         [SerializeField] private float _jumpCheckDelay = 0.125f;
         private float _currentJumpDelayTime;
-
-        [Header("Duck")]
-        [SerializeField] private Vector3 _duckSize;
-        private Vector3 _defaultSize;
 
         [Header("Speed")]
         [SerializeField] private float _speed = 1f;
@@ -35,23 +35,28 @@ namespace Entity.Player
         {
             _rigidbody = GetComponent<Rigidbody2D>();
             _jumpAnimation = GetComponent<JumpType>();
-            _defaultSize = transform.localScale;
         }
         
         private void OnEnable()
         {
             _groundChecker.ValueChanged += UpdateGroundedStatus;
+            _wallChecker.ValueChanged += UpdateWallStatus;
         }
 
         private void OnDisable()
         {
             _groundChecker.ValueChanged -= UpdateGroundedStatus;
-            gameObject.transform.localScale = _defaultSize;
+            _wallChecker.ValueChanged -= UpdateWallStatus;
         }
 
         private void UpdateGroundedStatus()
         {
             _isGrounded = _groundChecker.IsGrounded;
+        }
+        
+        private void UpdateWallStatus()
+        {
+            _isWalled = _wallChecker.IsOnWall;
         }
 
         private void Update()
@@ -96,6 +101,11 @@ namespace Entity.Player
                     Mathf.Lerp(_rigidbody.velocity.x, direction * _speed * _airResistanceCoefficient, _lastTimeGrounded),
                     _rigidbody.velocity.y
                 );
+            }
+
+            if (_isWalled)
+            {
+                _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, -1 * _lastTimeGrounded * _jumpAnimation.heightCoefficient);
             }
         }
 

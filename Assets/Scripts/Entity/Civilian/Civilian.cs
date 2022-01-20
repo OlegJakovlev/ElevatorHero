@@ -1,5 +1,5 @@
 ﻿using Components;
-using Score;
+using Components.Score;
 using UnityEngine;
 
 namespace Entity.Civilian

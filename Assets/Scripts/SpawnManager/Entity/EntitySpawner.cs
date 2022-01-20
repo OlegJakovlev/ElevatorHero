@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Components.Health;
-using Score;
+using Components.Score;
 using UnityEngine;
 using Random = UnityEngine.Random;
 

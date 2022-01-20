@@ -3125,7 +3125,7 @@ GameObject:
   - component: {fileID: 1276335085}
   m_Layer: 0
   m_Name: Health
-  m_TagString: Player
+  m_TagString: PlayerUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3391,6 +3391,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _loadScreen: {fileID: 0}
+  _mainMenu: {fileID: 339444356}
+  _gameCanvas: {fileID: 636721184}
 --- !u!114 &1307262814
 MonoBehaviour:
   m_ObjectHideFlags: 0
