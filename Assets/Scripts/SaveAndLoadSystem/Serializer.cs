@@ -45,7 +45,7 @@ namespace SaveAndLoadSystem
             Load();
         }
 
-        public void Save(string playerName)
+        public void Save(string playerName = "Jimmy")
         {
             // Get all needed to save data
             _data.CollectDataToSave(playerName, HighScoreManager.Instance.NewHighScore);
@@ -73,7 +73,10 @@ namespace SaveAndLoadSystem
         {
             // Generate filename
             string filename = Path.Combine(Application.persistentDataPath, SaveFile);
-            
+
+            // If no save file, create new one
+            if (!File.Exists(filename)) Save();
+
             // Read data
             byte[] soupBackIn = File.ReadAllBytes(filename);
 

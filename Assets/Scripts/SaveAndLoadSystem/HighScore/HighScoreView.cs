@@ -18,8 +18,7 @@ namespace SaveAndLoadSystem.HighScore
             for (int entryIndex = 0; entryIndex < _highScoreEntries.Length; entryIndex++)
             {
                 var currentEntry = _highScoreVisualEntries[entryIndex];
-                
-                currentEntry.Nickname = (_highScoreEntries[entryIndex]._name == "") ? "Jimmy" : _highScoreEntries[entryIndex]._name;
+                currentEntry.Nickname = (_highScoreEntries[entryIndex]._name.Trim() == "") ? "Jimmy" : _highScoreEntries[entryIndex]._name;
                 currentEntry.Score = _highScoreEntries[entryIndex]._score.ToString();
             }
         }
