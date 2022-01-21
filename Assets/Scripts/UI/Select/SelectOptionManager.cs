@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Audio;
 using UnityEngine;
 
 namespace UI.Select
@@ -50,6 +51,9 @@ namespace UI.Select
             // Select new tile and activate it
             SelectedOption = _inputOptions[_selectedOptionIndex];
             SelectedOption.IsActive = true;
+            
+            // Play sound
+            AudioSetup.Instance.PlaySound("ChangeSelect");
         }
 
         private void ChooseNextOption()

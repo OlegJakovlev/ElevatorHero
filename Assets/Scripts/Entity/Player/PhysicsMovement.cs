@@ -5,6 +5,7 @@ namespace Entity.Player
 {
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(JumpType))]
+    [RequireComponent(typeof(Animator))]
     public class PhysicsMovement : MonoBehaviour
     {
         [Header("Ground")]
@@ -125,18 +126,6 @@ namespace Entity.Player
             // Call Jump
             _jumpAnimation.ResetProgress();
             _playAnimation = true;
-        }
-
-        public void Duck(float pressed)
-        {
-            if (pressed > 0)
-            {
-                //transform.localScale = _duckSize;
-            }
-            else
-            {
-                //transform.localScale = _defaultSize;
-            }
         }
     }
 }

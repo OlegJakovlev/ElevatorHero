@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Audio.MVP
 {
@@ -29,8 +30,15 @@ namespace Audio.MVP
                 Debug.LogWarning(soundName + " sound/music was not found!");
                 return;
             }
-            
-            newSound._source.Play();
+
+            try
+            {
+                newSound._source.Play();
+            }
+            catch (ArgumentNullException)
+            {
+                Debug.LogWarning("Sound source is not set!");
+            }
         }
         
         public void StopSound(string soundName)

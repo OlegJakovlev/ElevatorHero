@@ -17,6 +17,12 @@ namespace Audio.MVP
             _soundSlider.onValueChanged.AddListener(delegate { OnSliderValueChange?.Invoke(); });
         }
 
+        public void UpdateVisuals(float newMusicValue, float newSoundValue)
+        {
+            _musicSlider.value = newMusicValue;
+            _soundSlider.value = newSoundValue;
+        }
+
         public Slider GetMusicSlider()
         {
             return _musicSlider;

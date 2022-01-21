@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Audio;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI.Select
@@ -41,6 +42,7 @@ namespace UI.Select
 
         public virtual void OnSelect()
         {
+            AudioSetup.Instance.PlaySound("SelectOption");
             if (_button) _button.onClick.Invoke();
         }
     }

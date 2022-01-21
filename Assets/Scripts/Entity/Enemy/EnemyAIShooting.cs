@@ -1,5 +1,3 @@
-using System;
-using System.Timers;
 using Components.ProjectileShoot;
 using UnityEngine;
 
@@ -15,11 +13,17 @@ namespace Entity.Enemy
         private bool _playerInRange;
         private float _shootingDirection;
 
+        [SerializeField] private Animator _animator;
+        
         private void Update()
         {
             // Delay the first shot
             if (_playerInRange) _currentDelay += Time.deltaTime;
-            if (_currentDelay >= _firstShootDelay) _shooting.ShootEvent(_shootingDirection);
+            if (_currentDelay >= _firstShootDelay)
+            {
+                _shooting.ShootEvent(_shootingDirection);
+                _animator.Play("EnemyShoot");
+            }
         }
         
         private void OnTriggerStay2D(Collider2D other)

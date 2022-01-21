@@ -246,6 +246,17 @@ public class @InputMapping : IInputActionCollection, IDisposable
                     ""action"": ""Duck"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a094ebc1-50e7-4ccf-ace7-1f22d6f2fc8c"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Duck"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -267,7 +278,7 @@ public class @InputMapping : IInputActionCollection, IDisposable
                     ""id"": ""d678d6a8-2866-4ecd-bb6d-0358ad8c5726"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press""
+                    ""interactions"": ""Press(behavior=2)""
                 },
                 {
                     ""name"": ""NavigateVertically"",
@@ -275,7 +286,7 @@ public class @InputMapping : IInputActionCollection, IDisposable
                     ""id"": ""9d9490af-39d1-414e-9865-5f9fdde5e70c"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press""
+                    ""interactions"": ""Press(behavior=2)""
                 }
             ],
             ""bindings"": [

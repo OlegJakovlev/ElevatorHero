@@ -7,7 +7,20 @@ namespace Audio
 {
     public class AudioSetup : MonoBehaviour
     {
-        public static AudioSetup Instance;
+        public static AudioSetup Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = FindObjectOfType(typeof(AudioSetup)) as AudioSetup;
+
+                return _instance;
+            }
+
+            private set => _instance = (_instance == null) ? value : null;
+        }
+
+        private static AudioSetup _instance;
         
         // Initialize audio mixers for sound and sound
         [SerializeField] private AudioMixerGroup _soundMixerGroup;
@@ -25,13 +38,9 @@ namespace Audio
 
         private void Awake()
         {
-            if (!Instance)
-                Instance = this;
-            else Destroy(gameObject);
-        }
-
-        public void Start()
-        {
+            Instance = this;
+            
+            // Create model
             _model = new AudioModel(
                 _soundMixerGroup,
                 _musicMixerGroup,
@@ -39,6 +48,9 @@ namespace Audio
                 _defaultSoundVolume,
                 _defaultMusicVolume
             );
+
+            // Predefine view 
+            _view.UpdateVisuals(_defaultSoundVolume, _defaultMusicVolume);
             
             _presenter = new AudioPresenter(_view, _model);
         }

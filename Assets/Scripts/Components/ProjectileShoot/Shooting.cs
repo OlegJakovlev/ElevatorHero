@@ -1,4 +1,4 @@
-using System;
+using Audio;
 using UnityEngine;
 
 namespace Components.ProjectileShoot
@@ -33,6 +33,9 @@ namespace Components.ProjectileShoot
         public void ShootEvent(float direction)
         {
             if (_lastTimeShootTime < _timeDelayBetweenShots) return;
+
+            // Play sound
+            AudioSetup.Instance.PlaySound(Random.Range(1, 5) == 4 ? "Shoot1" : "Shoot2");
 
             // Pivot calculation
             _finalShootingPivot = _shootingPivot.localPosition;

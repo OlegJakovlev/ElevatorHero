@@ -22,18 +22,14 @@ namespace Audio.MVP
             // Save all sounds
             _sounds = allSounds;
 
-            // Set audio source to camera
-            AudioSource audioSource = null;
-            
-            if (Camera.main && Camera.main.gameObject.TryGetComponent(out AudioSource audio))
-            {
-                audioSource = audio;
-            }
-            
             // Initialize each sound / music source
             foreach (Sound s in _sounds)
             {
-                s._source = audioSource;
+                // Set audio source to camera
+                if (Camera.main)
+                {
+                    s._source = Camera.main.gameObject.AddComponent<AudioSource>();
+                }
                 
                 switch (s._audioType)
                 {
@@ -60,8 +56,8 @@ namespace Audio.MVP
 
         public void SetMixerValues(float newSoundLevel, float newMusicLevel)
         {
-            _soundMixerGroup.audioMixer.SetFloat("MusicVolume", Mathf.Log10(newSoundLevel) * 20);
-            _musicMixerGroup.audioMixer.SetFloat("SoundVolume", Mathf.Log10(newMusicLevel) * 20);
+            _soundMixerGroup.audioMixer.SetFloat("SoundVolume", Mathf.Log10(newSoundLevel) * 20);
+            _musicMixerGroup.audioMixer.SetFloat("MusicVolume", Mathf.Log10(newMusicLevel) * 20);
         }
     }
 }
