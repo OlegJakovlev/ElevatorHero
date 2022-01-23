@@ -1,4 +1,3 @@
-using Audio;
 using Components.ProjectileShoot;
 using UnityEngine;
 
@@ -16,7 +15,7 @@ namespace Entity.Player
 
         [Header("Physics")]
         private Vector2 _movementVector;
-        private Vector2 _lastNonZeroMovementVector = Vector2.right;
+        private Vector2 _lastNonZeroMovementVector = Vector2.left;
         private PhysicsMovement _physicsMovement;
 
         [Header("Shooting")] 
@@ -67,7 +66,7 @@ namespace Entity.Player
         {
             // Reset movement vectors
             _movementVector = Vector2.zero;
-            _lastNonZeroMovementVector = Vector2.right;
+            _lastNonZeroMovementVector = Vector2.left;
             
             // Release state of controls
             _controls.Character.Shoot.Dispose();

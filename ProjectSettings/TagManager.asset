@@ -23,7 +23,7 @@ TagManager:
   - EnemyProjectile
   - Hostage
   - Civilian
-  - 
+  - Background
   - 
   - 
   - 
@@ -51,4 +51,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 602147727
+    locked: 0
+  - name: Background
+    uniqueID: 958402121
     locked: 0

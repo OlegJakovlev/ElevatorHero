@@ -36,6 +36,7 @@ namespace PlayCamera
         {
             if (newTarget.TryGetComponent(out Transform target))
             {
+                transform.position = new Vector3(target.position.x, target.position.y, transform.position.z);
                 _objectToFollow = target;
             }
         }

@@ -1,4 +1,5 @@
-﻿using Components;
+﻿using Audio;
+using Components;
 using UnityEngine;
 
 namespace Entity.Escalator
@@ -14,6 +15,7 @@ namespace Entity.Escalator
         
         public void Activate()
         {
+            AudioSetup.Instance.PlaySound("TeleportSound");
             _escalator.Use(_player.transform, _end);
         }
 

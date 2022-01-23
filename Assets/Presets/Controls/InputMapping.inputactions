@@ -300,6 +300,17 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "",
+                    "id": "a3d2fad6-7e2d-496b-bfab-186cb8902640",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "LeftAndRight",
                     "id": "91361e4d-971f-4396-8e10-9f51dd2761ea",
                     "path": "1DAxis",

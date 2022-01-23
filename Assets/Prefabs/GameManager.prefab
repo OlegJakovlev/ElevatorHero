@@ -1954,8 +1954,8 @@ Camera:
   m_GameObject: {fileID: 1325106012101151733}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.019624414, g: 0.037590846, b: 0.066037714, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1971,7 +1971,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 7
   m_Depth: -1
   m_CullingMask:
@@ -3624,7 +3624,7 @@ Animator:
   m_GameObject: {fileID: 1325106012839402106}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8eb1b0ec390a6be4f942188f2474922e, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3962,6 +3962,62 @@ MonoBehaviour:
     _volume: 1
     _pitch: 1
     _loop: 1
+    _source: {fileID: 0}
+  - _audioType: 0
+    _name: DoorSound
+    _clip: {fileID: 8300000, guid: d8092c0bc9b87bd43b3c9c263d1efca9, type: 3}
+    _volume: 1
+    _pitch: 1
+    _loop: 0
+    _source: {fileID: 0}
+  - _audioType: 0
+    _name: TeleportSound
+    _clip: {fileID: 8300000, guid: 030032fe7bad74844b80d943691ab5a3, type: 3}
+    _volume: 1
+    _pitch: 1
+    _loop: 0
+    _source: {fileID: 0}
+  - _audioType: 0
+    _name: Elevator
+    _clip: {fileID: 8300000, guid: 64856394ced4d184ba6de47af4e99f56, type: 3}
+    _volume: 1
+    _pitch: 1
+    _loop: 0
+    _source: {fileID: 0}
+  - _audioType: 0
+    _name: Citizen1
+    _clip: {fileID: 8300000, guid: d69788ed69fc462418346e56219bac73, type: 3}
+    _volume: 1
+    _pitch: 1
+    _loop: 0
+    _source: {fileID: 0}
+  - _audioType: 0
+    _name: Citizen2
+    _clip: {fileID: 8300000, guid: 0d5718a808243e64eb3a72ef57752678, type: 3}
+    _volume: 1
+    _pitch: 1
+    _loop: 0
+    _source: {fileID: 0}
+  - _audioType: 0
+    _name: Hostage1
+    _clip: {fileID: 8300000, guid: d9cc5c069766fb245844e3ac6854856b, type: 3}
+    _volume: 1
+    _pitch: 1
+    _loop: 0
+    _source: {fileID: 0}
+  - _audioType: 0
+    _name: Hostage2
+    _clip: {fileID: 8300000, guid: 01b211dff8fce5c4b8f05b89f9ed73fa, type: 3}
+    _volume: 1
+    _pitch: 1
+    _loop: 0
+    _source: {fileID: 0}
+  - _audioType: 0
+    _name: Hostage3
+    _clip: {fileID: 8300000, guid: 40b0edd676ffe06449408f71a806d4b8, type: 3}
+    _volume: 1
+    _pitch: 1
+    _loop: 0
     _source: {fileID: 0}
   _view: {fileID: 1325106012736194026}
 --- !u!114 &1325106012883792146

@@ -1,4 +1,5 @@
-﻿using Components;
+﻿using Audio;
+using Components;
 using Components.Score;
 using UnityEngine;
 
@@ -7,11 +8,14 @@ namespace Entity.Door
     [RequireComponent(typeof(Collider2D))]
     public class DoorActivator : MonoBehaviour, IActivator
     {
+        
         [SerializeField] private Door _door;
         [SerializeField] private LayerMask _playerMask;
         [SerializeField] private LayerMask _unsafeMask;
         private GameObject _player;
+        private bool _active = true;
         
+        [Header("Score Trigger")]
         [SerializeField] private ScoreSetup _score;
         [SerializeField] private Collider2D _entryTrigger;
 
@@ -37,12 +41,17 @@ namespace Entity.Door
         
         public void Activate()
         {
+            if (!_active) return;
+
+            // Disable entry trigger
+            _active = false;
+            
             _score.PlayerOpenDoor();
             _door.Use(_player);
             
-            // Disable entry trigger
-            //_entryTrigger.enabled = false;
-            
+            // Play sound
+            AudioSetup.Instance.PlaySound("DoorSound");
+
             // Replace sprite permanently
             _renderer.sprite = _spriteToReplaceFor;
         }

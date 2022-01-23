@@ -1,3 +1,4 @@
+using Audio;
 using Components;
 using Components.Score;
 using UnityEngine;
@@ -25,8 +26,20 @@ namespace Entity.Hostage
         public void Activate()
         {
             _score.PlayerSaveHostage();
-
-            // Play animation?
+            
+            // Play audio
+            switch (Random.Range(1, 6))
+            {
+                case 5:
+                    AudioSetup.Instance.PlaySound("Hostage1");
+                    break;
+                case 6:
+                    AudioSetup.Instance.PlaySound("Hostage2");
+                    break;
+                default:
+                    AudioSetup.Instance.PlaySound("Hostage3");
+                    break;
+            }
             
             gameObject.SetActive(false);
         }

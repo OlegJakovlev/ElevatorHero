@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Audio;
 using UnityEngine;
 using Random = System.Random;
 
@@ -15,7 +16,6 @@ namespace Entity.Elevator
         [SerializeField] private List<Point> _stops;
         private int _currentStopIndex;
         private Point _nextStop;
-        private Point _previousStop;
         private readonly Random _rng = new Random();
         
         [Header("Stop Timers")]
@@ -39,6 +39,9 @@ namespace Entity.Elevator
         [SerializeField] private float _delayTime;
         private LevelTimer _levelTimer;
         private bool _alarmed;
+
+        [Header("Audio")]
+        private bool _playedSound;
         
         private void OnTriggerStay2D(Collider2D other)
         {
@@ -85,9 +88,16 @@ namespace Entity.Elevator
             if ((_isVertical && Mathf.Abs(_nextStop.GetPosition().y - transform.position.y) <= _maxDifference) || 
                 (!_isVertical && Mathf.Abs(_nextStop.GetPosition().x - transform.position.x) <= _maxDifference))
             {
+                // Play sound only if manually called and first time
+                if (_manualCalled && !_playedSound)
+                {
+                    AudioSetup.Instance.PlaySound("Elevator");
+                    _playedSound = true;
+                }
+                
                 // Stop here
                 _velocity = 0;
-                
+
                 // Dont move while player is inside
                 if (!_playerInside) _currentDelayTimer += Time.deltaTime;
 
@@ -134,8 +144,7 @@ namespace Entity.Elevator
                 newStop = _stops[_currentStopIndex];
             }
 
-            // Save current stop and set new
-            _previousStop = _nextStop;
+            // Set new stop
             _nextStop = newStop;
             
             UpdateMoveDirection();
@@ -159,10 +168,10 @@ namespace Entity.Elevator
             }
 
             _manualCalled = true;
+            _playedSound = false;
             _currentStopIndex = _stops.FindIndex(stop => stop.GetPosition() == newStop.GetPosition());
             
-            // Save current stop and set new
-            _previousStop = _nextStop;
+            // Set new stop
             _nextStop = newStop;
 
             UpdateMoveDirection();
