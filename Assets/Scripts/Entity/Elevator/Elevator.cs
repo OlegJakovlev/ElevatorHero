@@ -132,6 +132,11 @@ namespace Entity.Elevator
             _rigidbody.MovePosition(transform.position + _direction * (appliedVelocity * Time.deltaTime));
         }
 
+        public bool IsVertical()
+        {
+            return _isVertical;
+        }
+
         private void ChooseRandomNextStop()
         {
             ResetTimerAndVelocity();

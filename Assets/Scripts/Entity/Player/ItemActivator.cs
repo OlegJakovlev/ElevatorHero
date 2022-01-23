@@ -25,7 +25,19 @@ namespace Entity.Player
             }
         }
 
-        public void CallElevator(float direction)
+        public void CallVerticalElevator(float direction)
+        {
+            if (_currentElevator == null || direction == 0 || !_currentElevator.IsVertical()) return;
+            CallElevator(direction);
+        }
+
+        public void CallHorizontalElevator(float direction)
+        {
+            if (_currentElevator == null || direction == 0 || _currentElevator.IsVertical()) return;
+            CallElevator(direction);
+        }
+
+        private void CallElevator(float direction)
         {
             if (_currentElevator == null || direction == 0) return;
 

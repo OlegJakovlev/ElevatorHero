@@ -8,7 +8,8 @@ namespace Components.Health
     public abstract class EntityHealth : MonoBehaviour, IHealth
     {
         [SerializeField] protected int _maxHealth;
-        protected int CurrentHealth;
+        private int _currentHealth;
+        private bool _invincibility;
 
         [Header("Visuals")]
         [SerializeField] protected AnimationClip _deathClip;
@@ -25,28 +26,36 @@ namespace Components.Health
         protected void Start()
         {
             if (_maxHealth <= 0) Debug.LogWarning("Entity health is less that 0!");
-            CurrentHealth = _maxHealth;
+            _currentHealth = _maxHealth;
+        }
+
+        protected void OnEnable()
+        {
+            _invincibility = false;
         }
 
         public virtual void AddHealth(int amount)
         {
             if (amount <= 0) return;
-            CurrentHealth += amount;
+            _currentHealth += amount;
         }
 
         public virtual void LoseHealth(int amount)
         {
-            if (amount <= 0) return;
+            if (amount <= 0 || _invincibility) return;
+
+            // Can not obtain more damage than needed
+            _invincibility = true;
             
             // Update current health
-            CurrentHealth -= amount;
+            _currentHealth -= amount;
             OnDamageTaken?.Invoke();
             
             // Play entity hit sound
             AudioSetup.Instance.PlaySound("EntityHit");
-            
+
             // Check for current health
-            if (CurrentHealth <= 0) Die();
+            if (_currentHealth <= 0) Die();
         }
 
         public virtual void Die()

@@ -9,7 +9,6 @@ namespace UI.Select
         [SerializeField] protected Image _image;
         [SerializeField] protected Text _textComponent;
         [SerializeField] protected Button _button;
-
         [SerializeField] protected bool _defaultIsSet;
 
         public bool IsActive

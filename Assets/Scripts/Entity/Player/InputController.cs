@@ -37,14 +37,29 @@ namespace Entity.Player
             _spriteFlipper = GetComponent<SpriteFlipper>();
             _animator = GetComponent<Animator>();
 
+            // Player Movement
             _controls.Character.Shoot.performed += _ => Shoot();
             _controls.Character.Movement.performed += context => Move(context.ReadValue<float>());
             _controls.Character.Jump.performed += context => Jump(context.ReadValue<float>());
             _controls.Character.Duck.performed += context => Duck(context.ReadValue<float>());
             _controls.Character.Activation.performed += _ => Activate();
+            
+            // Pause menu action
+            _controls.UI.Pause.performed += _ =>
+            {
+                CustomSceneManager.Instance.SetPauseMenuActive(true);
+                OnDisable();
+            };
+
+            // Elevator
+            _controls.Character.ElevatorVerticalControl.performed +=
+                context => _itemActivator.CallVerticalElevator(context.ReadValue<float>());
+            
+            _controls.Character.ElevatorHorizontalControl.performed +=
+                context => _itemActivator.CallHorizontalElevator(context.ReadValue<float>());
         }
 
-        private void OnEnable()
+        public void OnEnable()
         {
             ResetControls();
             _controls.Enable();
@@ -100,8 +115,6 @@ namespace Entity.Player
         
         private void Jump(float direction)
         {
-            // Try to use elevator
-            _itemActivator.CallElevator(direction);
             _movementVector.y = direction;
 
             if (direction != 0) _lastNonZeroMovementVector.y = direction;

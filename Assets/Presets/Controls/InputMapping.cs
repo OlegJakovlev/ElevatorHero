@@ -57,6 +57,22 @@ public class @InputMapping : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=2)""
+                },
+                {
+                    ""name"": ""ElevatorHorizontalControl"",
+                    ""type"": ""Button"",
+                    ""id"": ""bad0bd11-9d67-4506-80f2-d0b39c6d4990"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)""
+                },
+                {
+                    ""name"": ""ElevatorVerticalControl"",
+                    ""type"": ""Button"",
+                    ""id"": ""a0cc7d88-3635-461c-8810-3179db222e16"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)""
                 }
             ],
             ""bindings"": [
@@ -116,39 +132,6 @@ public class @InputMapping : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Arrows"",
-                    ""id"": ""0ea510d5-db1e-42d0-81dc-544d7611ad95"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""Negative"",
-                    ""id"": ""c39968ee-84a5-4ff9-a6fa-94dd3f8191b3"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Positive"",
-                    ""id"": ""abccf12b-74e7-4dd0-9f01-5de68f06ba3e"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": ""WASD"",
                     ""id"": ""435bb3be-3a3f-4087-9935-b00a2d1b593d"",
                     ""path"": ""1DAxis"",
@@ -174,39 +157,6 @@ public class @InputMapping : IInputActionCollection, IDisposable
                     ""name"": ""negative"",
                     ""id"": ""20fb4428-70fa-4785-a86d-0984261a95ac"",
                     ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Arrows"",
-                    ""id"": ""f0b51922-d512-4bc2-8e38-122082fda189"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""c33b0cd9-72b0-41c8-a0d5-009dce97b0a3"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""ce9bd69a-22a6-4199-a42a-c99dacfaff81"",
-                    ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
@@ -248,15 +198,70 @@ public class @InputMapping : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""a094ebc1-50e7-4ccf-ace7-1f22d6f2fc8c"",
+                    ""name"": ""HorizontalArrows"",
+                    ""id"": ""0ea510d5-db1e-42d0-81dc-544d7611ad95"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ElevatorHorizontalControl"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Negative"",
+                    ""id"": ""c39968ee-84a5-4ff9-a6fa-94dd3f8191b3"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""ElevatorHorizontalControl"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Positive"",
+                    ""id"": ""abccf12b-74e7-4dd0-9f01-5de68f06ba3e"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""ElevatorHorizontalControl"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Arrows"",
+                    ""id"": ""90aafa21-fbe6-4eef-bef6-20d1f60097f7"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ElevatorVerticalControl"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""36fa221e-1648-4c2a-bfe9-26210f09d0b7"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""ElevatorVerticalControl"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""f299530c-bfcb-4b22-b93e-be6471b3ce24"",
                     ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""Duck"",
+                    ""action"": ""ElevatorVerticalControl"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -284,6 +289,14 @@ public class @InputMapping : IInputActionCollection, IDisposable
                     ""name"": ""NavigateVertically"",
                     ""type"": ""Button"",
                     ""id"": ""9d9490af-39d1-414e-9865-5f9fdde5e70c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)""
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""60b359c2-a9b9-431f-9a7d-14d5b13090f4"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=2)""
@@ -388,6 +401,17 @@ public class @InputMapping : IInputActionCollection, IDisposable
                     ""action"": ""NavigateVertically"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""854373f5-606b-425f-b2d3-ef62e75bd62c"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -418,11 +442,14 @@ public class @InputMapping : IInputActionCollection, IDisposable
         m_Character_Jump = m_Character.FindAction("Jump", throwIfNotFound: true);
         m_Character_Activation = m_Character.FindAction("Activation", throwIfNotFound: true);
         m_Character_Duck = m_Character.FindAction("Duck", throwIfNotFound: true);
+        m_Character_ElevatorHorizontalControl = m_Character.FindAction("ElevatorHorizontalControl", throwIfNotFound: true);
+        m_Character_ElevatorVerticalControl = m_Character.FindAction("ElevatorVerticalControl", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Select = m_UI.FindAction("Select", throwIfNotFound: true);
         m_UI_NavigateHorizontally = m_UI.FindAction("NavigateHorizontally", throwIfNotFound: true);
         m_UI_NavigateVertically = m_UI.FindAction("NavigateVertically", throwIfNotFound: true);
+        m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -477,6 +504,8 @@ public class @InputMapping : IInputActionCollection, IDisposable
     private readonly InputAction m_Character_Jump;
     private readonly InputAction m_Character_Activation;
     private readonly InputAction m_Character_Duck;
+    private readonly InputAction m_Character_ElevatorHorizontalControl;
+    private readonly InputAction m_Character_ElevatorVerticalControl;
     public struct CharacterActions
     {
         private @InputMapping m_Wrapper;
@@ -486,6 +515,8 @@ public class @InputMapping : IInputActionCollection, IDisposable
         public InputAction @Jump => m_Wrapper.m_Character_Jump;
         public InputAction @Activation => m_Wrapper.m_Character_Activation;
         public InputAction @Duck => m_Wrapper.m_Character_Duck;
+        public InputAction @ElevatorHorizontalControl => m_Wrapper.m_Character_ElevatorHorizontalControl;
+        public InputAction @ElevatorVerticalControl => m_Wrapper.m_Character_ElevatorVerticalControl;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -510,6 +541,12 @@ public class @InputMapping : IInputActionCollection, IDisposable
                 @Duck.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnDuck;
                 @Duck.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnDuck;
                 @Duck.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnDuck;
+                @ElevatorHorizontalControl.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnElevatorHorizontalControl;
+                @ElevatorHorizontalControl.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnElevatorHorizontalControl;
+                @ElevatorHorizontalControl.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnElevatorHorizontalControl;
+                @ElevatorVerticalControl.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnElevatorVerticalControl;
+                @ElevatorVerticalControl.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnElevatorVerticalControl;
+                @ElevatorVerticalControl.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnElevatorVerticalControl;
             }
             m_Wrapper.m_CharacterActionsCallbackInterface = instance;
             if (instance != null)
@@ -529,6 +566,12 @@ public class @InputMapping : IInputActionCollection, IDisposable
                 @Duck.started += instance.OnDuck;
                 @Duck.performed += instance.OnDuck;
                 @Duck.canceled += instance.OnDuck;
+                @ElevatorHorizontalControl.started += instance.OnElevatorHorizontalControl;
+                @ElevatorHorizontalControl.performed += instance.OnElevatorHorizontalControl;
+                @ElevatorHorizontalControl.canceled += instance.OnElevatorHorizontalControl;
+                @ElevatorVerticalControl.started += instance.OnElevatorVerticalControl;
+                @ElevatorVerticalControl.performed += instance.OnElevatorVerticalControl;
+                @ElevatorVerticalControl.canceled += instance.OnElevatorVerticalControl;
             }
         }
     }
@@ -540,6 +583,7 @@ public class @InputMapping : IInputActionCollection, IDisposable
     private readonly InputAction m_UI_Select;
     private readonly InputAction m_UI_NavigateHorizontally;
     private readonly InputAction m_UI_NavigateVertically;
+    private readonly InputAction m_UI_Pause;
     public struct UIActions
     {
         private @InputMapping m_Wrapper;
@@ -547,6 +591,7 @@ public class @InputMapping : IInputActionCollection, IDisposable
         public InputAction @Select => m_Wrapper.m_UI_Select;
         public InputAction @NavigateHorizontally => m_Wrapper.m_UI_NavigateHorizontally;
         public InputAction @NavigateVertically => m_Wrapper.m_UI_NavigateVertically;
+        public InputAction @Pause => m_Wrapper.m_UI_Pause;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -565,6 +610,9 @@ public class @InputMapping : IInputActionCollection, IDisposable
                 @NavigateVertically.started -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigateVertically;
                 @NavigateVertically.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigateVertically;
                 @NavigateVertically.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigateVertically;
+                @Pause.started -= m_Wrapper.m_UIActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -578,6 +626,9 @@ public class @InputMapping : IInputActionCollection, IDisposable
                 @NavigateVertically.started += instance.OnNavigateVertically;
                 @NavigateVertically.performed += instance.OnNavigateVertically;
                 @NavigateVertically.canceled += instance.OnNavigateVertically;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -598,11 +649,14 @@ public class @InputMapping : IInputActionCollection, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnActivation(InputAction.CallbackContext context);
         void OnDuck(InputAction.CallbackContext context);
+        void OnElevatorHorizontalControl(InputAction.CallbackContext context);
+        void OnElevatorVerticalControl(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
         void OnSelect(InputAction.CallbackContext context);
         void OnNavigateHorizontally(InputAction.CallbackContext context);
         void OnNavigateVertically(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }

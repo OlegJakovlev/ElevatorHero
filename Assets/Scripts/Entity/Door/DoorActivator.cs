@@ -6,6 +6,7 @@ using UnityEngine;
 namespace Entity.Door
 {
     [RequireComponent(typeof(Collider2D))]
+    [RequireComponent(typeof(Animator))]
     public class DoorActivator : MonoBehaviour, IActivator
     {
         
@@ -22,10 +23,12 @@ namespace Entity.Door
         [Header("Visuals")]
         [SerializeField] private SpriteRenderer _renderer;
         [SerializeField] private Sprite _spriteToReplaceFor;
+        private Animator _animator;
         
         private void Awake()
         {
             _entryTrigger = GetComponent<Collider2D>();
+            _animator = GetComponent<Animator>();
             
             if (!_score)
             {
@@ -51,6 +54,7 @@ namespace Entity.Door
             
             // Play sound
             AudioSetup.Instance.PlaySound("DoorSound");
+            _animator.Play("OpenDoor");
 
             // Replace sprite permanently
             _renderer.sprite = _spriteToReplaceFor;

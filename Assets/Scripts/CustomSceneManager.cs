@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Entity.Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -23,10 +24,19 @@ public class CustomSceneManager : MonoBehaviour
     [SerializeField] private GameObject _loadScreen;
     [SerializeField] private GameObject _mainMenu;
     [SerializeField] private GameObject _gameCanvas;
+    [SerializeField] private GameObject _pauseMenu;
 
     private void Awake()
     {
         Instance = this;
+    }
+
+    public void SetPauseMenuActive(bool active)
+    {
+        if (!active)
+            GameObject.FindGameObjectWithTag("Player").GetComponent<InputController>().OnEnable();
+        
+        _pauseMenu.SetActive(active);
     }
 
     public void LoadSceneByName(string sceneName)
