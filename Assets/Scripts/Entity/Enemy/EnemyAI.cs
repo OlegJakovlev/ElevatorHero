@@ -30,6 +30,9 @@ namespace Entity.Enemy
 
         private void SetDestination()
         {
+            if (!_agent.hasPath) 
+                _spriteFlipper.FlipSprite(_target.transform.position.x > transform.position.x);
+            
             try
             {
                 if (!_target.activeSelf) return;

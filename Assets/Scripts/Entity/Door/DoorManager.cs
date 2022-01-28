@@ -8,11 +8,11 @@ namespace Entity.Door
     {
         [SerializeField] private List<DoorActivator> _allDoors = new List<DoorActivator>();
         
-        public Door GetSafeDoor()
+        public Door GetSafeDoor(Door current)
         {
             return _allDoors.Select(activator => activator.GetDoor()).FirstOrDefault(
                 potentialSafeDoor => potentialSafeDoor.gameObject.activeInHierarchy
-                && potentialSafeDoor.IsSafe);
+                && potentialSafeDoor.IsSafe && potentialSafeDoor != current);
         }
     }
 }

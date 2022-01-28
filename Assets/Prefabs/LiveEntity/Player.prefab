@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8213555972914051505}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Checkers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6522782822809186162}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2545869611400505560}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ShootingPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -511,7 +511,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8858877812818340939}
   - component: {fileID: 4417041144114881106}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}

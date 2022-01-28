@@ -41,7 +41,7 @@ namespace Entity.Door
             if (Random.Range(1, 100) > _teleportPercentChance) return;
             
             // Get safe door
-            Door safeDoor = _doorManager.GetSafeDoor();
+            Door safeDoor = _doorManager.GetSafeDoor(this);
             if (!safeDoor) return;
             
             // Teleport player to safe door coordinates

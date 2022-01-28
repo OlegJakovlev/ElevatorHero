@@ -11,7 +11,8 @@ namespace Entity.Civilian
         [SerializeField] private int _percentChanceOfAlarm;
         [SerializeField] private ScoreSetup _score;
         [SerializeField] private LevelTimer _levelTimer;
-
+        private bool _active = true;
+        
         private Animator _animator;
         
         private void Awake()
@@ -43,6 +44,11 @@ namespace Entity.Civilian
 
         public void Activate()
         {
+            if (!_active) return;
+
+            // Disable entry trigger
+            _active = false;
+            
             _score.PlayerGiveCitizenPapers();
 
             // Play animation?
