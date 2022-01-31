@@ -5,7 +5,6 @@ namespace Entity.Player
 {
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(JumpType))]
-    [RequireComponent(typeof(Animator))]
     public class PhysicsMovement : MonoBehaviour
     {
         [Header("Ground")]

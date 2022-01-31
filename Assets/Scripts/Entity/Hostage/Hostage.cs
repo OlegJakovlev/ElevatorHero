@@ -28,12 +28,12 @@ namespace Entity.Hostage
             _score.PlayerSaveHostage();
             
             // Play audio
-            switch (Random.Range(1, 6))
+            switch (Random.Range(1, 4))
             {
-                case 5:
+                case 3:
                     AudioSetup.Instance.PlaySound("Hostage1");
                     break;
-                case 6:
+                case 2:
                     AudioSetup.Instance.PlaySound("Hostage2");
                     break;
                 default:

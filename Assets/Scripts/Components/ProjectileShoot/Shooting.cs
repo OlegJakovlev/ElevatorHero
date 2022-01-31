@@ -1,5 +1,7 @@
+using System;
 using Audio;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Components.ProjectileShoot
 {
@@ -34,9 +36,6 @@ namespace Components.ProjectileShoot
         {
             if (_lastTimeShootTime < _timeDelayBetweenShots) return;
 
-            // Play sound
-            AudioSetup.Instance.PlaySound(Random.Range(1, 5) == 4 ? "Shoot1" : "Shoot2");
-
             // Pivot calculation
             _finalShootingPivot = _shootingPivot.localPosition;
             _finalShootingPivot.x *= (direction == 0 ? -1 : direction);
@@ -66,6 +65,9 @@ namespace Components.ProjectileShoot
             projectileComponent.SetLayerMask(_projectileMask);
             projectileComponent.SetLayer(_newProjectileLayer);
 
+            // Play sound
+            AudioSetup.Instance.PlaySound(Random.Range(1, 5) == 4 ? "Shoot1" : "Shoot2");
+            
             // Move projectile to pivot and shift by direction
             projectile.transform.position = worldProjectilePosition;
             projectile.SetActive(true);

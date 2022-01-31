@@ -1577,6 +1577,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1297289842}
     m_Modifications:
+    - target: {fileID: 3913207639012240846, guid: 681909a3dc284e04282897fa8e8f07ea, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7773920066041978117, guid: 681909a3dc284e04282897fa8e8f07ea, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -3159,6 +3163,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1297289842}
     m_Modifications:
+    - target: {fileID: 3913207639012240846, guid: 681909a3dc284e04282897fa8e8f07ea, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7773920066041978117, guid: 681909a3dc284e04282897fa8e8f07ea, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -4938,6 +4946,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1297289842}
     m_Modifications:
+    - target: {fileID: 3913207639012240846, guid: 681909a3dc284e04282897fa8e8f07ea, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7773920066041978117, guid: 681909a3dc284e04282897fa8e8f07ea, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -5074,6 +5086,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1748435948}
     m_Modifications:
+    - target: {fileID: 2939856664953300620, guid: 756b12869c7c77746bcf86b6c4ee78e0, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5733989953616348130, guid: 756b12869c7c77746bcf86b6c4ee78e0, type: 3}
+      propertyPath: _inversed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5733989953616348130, guid: 756b12869c7c77746bcf86b6c4ee78e0, type: 3}
       propertyPath: _doorManager
       value: 
@@ -6311,6 +6331,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1297289842}
     m_Modifications:
+    - target: {fileID: 3913207639012240846, guid: 681909a3dc284e04282897fa8e8f07ea, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7773920066041978117, guid: 681909a3dc284e04282897fa8e8f07ea, type: 3}
       propertyPath: m_RootOrder
       value: 5

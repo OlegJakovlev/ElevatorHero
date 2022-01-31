@@ -105,11 +105,11 @@ namespace Entity.Player
             {
                 _lastNonZeroMovementVector.x = direction;
                 _spriteFlipper.FlipSprite(direction > 0);
-
-                if (_animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !_animator.IsInTransition(0))
-                {
-                    _animator.Play("PlayerIdle");
-                }
+                _animator.Play("PlayerRun");
+            }
+            else
+            {
+                _animator.Play("PlayerIdle");
             }
         }
         
