@@ -218,7 +218,6 @@ MonoBehaviour:
   _image: {fileID: 1968100625}
   _textComponent: {fileID: 1843264077}
   _button: {fileID: 380050458}
-  _toggleEnabled: 0
   _defaultIsSet: 0
 --- !u!1 &838516939
 GameObject:
@@ -466,7 +465,6 @@ MonoBehaviour:
   _image: {fileID: 356337526}
   _textComponent: {fileID: 838516941}
   _button: {fileID: 1259610747}
-  _toggleEnabled: 0
   _defaultIsSet: 0
 --- !u!1 &1527425966
 GameObject:
@@ -1065,7 +1063,6 @@ MonoBehaviour:
   _image: {fileID: 1325106011257617205}
   _textComponent: {fileID: 1325106012180308651}
   _button: {fileID: 1325106011325820384}
-  _toggleEnabled: 1
   _defaultIsSet: 0
 --- !u!114 &1325106011325820384
 MonoBehaviour:
@@ -1745,7 +1742,6 @@ MonoBehaviour:
   _image: {fileID: 1325106012097922439}
   _textComponent: {fileID: 1325106012863303553}
   _button: {fileID: 1325106011600114642}
-  _toggleEnabled: 1
   _defaultIsSet: 0
 --- !u!1 &1325106011667303676
 GameObject:
@@ -2506,7 +2502,6 @@ MonoBehaviour:
   _image: {fileID: 1325106012590037060}
   _textComponent: {fileID: 0}
   _button: {fileID: 0}
-  _toggleEnabled: 1
   _defaultIsSet: 0
   _stepDelta: 0.05
   _slider: {fileID: 1325106012061952105}
@@ -2894,6 +2889,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c9321c0fadfebf4bad2202ed32776bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxOffset: {x: 5, y: 5}
   _slowFactor: 1
   _objectToFollow: {fileID: 0}
 --- !u!1 &1325106012120897718
@@ -3038,7 +3034,6 @@ MonoBehaviour:
   _image: {fileID: 1325106011772464923}
   _textComponent: {fileID: 1325106012091247157}
   _button: {fileID: 1325106012153051660}
-  _toggleEnabled: 1
   _defaultIsSet: 0
 --- !u!114 &1325106012153051660
 MonoBehaviour:
@@ -3929,7 +3924,6 @@ MonoBehaviour:
   _image: {fileID: 1325106012581316227}
   _textComponent: {fileID: 1325106011667303674}
   _button: {fileID: 1325106012653152396}
-  _toggleEnabled: 1
   _defaultIsSet: 0
 --- !u!114 &1325106012653152396
 MonoBehaviour:
@@ -5236,7 +5230,6 @@ MonoBehaviour:
   _image: {fileID: 1325106012892912624}
   _textComponent: {fileID: 1325106011391941533}
   _button: {fileID: 1325106012953769978}
-  _toggleEnabled: 1
   _defaultIsSet: 0
 --- !u!114 &1325106012953769978
 MonoBehaviour:
@@ -5475,7 +5468,6 @@ MonoBehaviour:
   _image: {fileID: 1325106011343884092}
   _textComponent: {fileID: 0}
   _button: {fileID: 0}
-  _toggleEnabled: 1
   _defaultIsSet: 0
   _stepDelta: 0.05
   _slider: {fileID: 1325106013105020516}

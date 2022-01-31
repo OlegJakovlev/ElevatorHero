@@ -39,6 +39,12 @@ namespace Entity.Door
         {
             // Teleport player to safe door with some chance
             if (Random.Range(1, 100) > _teleportPercentChance) return;
+
+            if (!_doorManager)
+            {
+                Debug.LogWarning("No door manager for this object: " + GetInstanceID());
+                return;
+            }
             
             // Get safe door
             Door safeDoor = _doorManager.GetSafeDoor(this);

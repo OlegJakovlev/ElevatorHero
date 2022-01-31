@@ -79,6 +79,8 @@ namespace Entity.Elevator
 
         private void Start()
         {
+            _delayToStayOnStop += UnityEngine.Random.Range(0, 1f);
+            
             ChooseRandomNextStop();
             _velocity = _terminalVelocity;
         }

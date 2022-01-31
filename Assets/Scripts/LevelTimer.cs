@@ -15,7 +15,11 @@ public class LevelTimer : MonoBehaviour
     public void Alarm()
     {
         // If invoke pending - cancel and start a new one
-        if (IsInvoking(nameof(Alarm))) CancelInvoke(nameof(Alarm));
+        if (IsInvoking(nameof(Alarm)))
+        {
+            AudioSetup.Instance.StopSound("Alarm");
+            CancelInvoke(nameof(Alarm));
+        }
         OnAlarm?.Invoke();
         
         // Play sound

@@ -11,7 +11,7 @@ namespace SpawnManager.Entity
         [Header("Spawner Entity")]
         [SerializeField] protected ObjectPool.ObjectPool _entityPool;
 
-        [Header("Spawner Properties")] 
+        [Header("Spawner Properties")]
         [SerializeField] protected LayerMask _noSpawnMask;
         [SerializeField] protected float _timeForRespawn = 2f;
         [SerializeField] protected int _entitiesSpawnLimit;

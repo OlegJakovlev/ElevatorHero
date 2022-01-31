@@ -60,12 +60,16 @@ namespace Components.Health
 
         public virtual void Die()
         {
-            OnDeath?.Invoke();
             AudioSetup.Instance.PlaySound("EntityDie");
             
             // Play death animation if exists
             if (_deathClip) Animator.Play(_deathClip.name);
-            else gameObject.SetActive(false);
+            else Deactivate();
+        }
+
+        public void DeathEvent()
+        {
+            if (_currentHealth <= 0) OnDeath?.Invoke();
         }
 
         public void Deactivate()
