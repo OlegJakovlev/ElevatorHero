@@ -30,17 +30,13 @@ namespace Audio.MVP
                 {
                     s._source = Camera.main.gameObject.AddComponent<AudioSource>();
                 }
-                
-                switch (s._audioType)
-                {
-                    case Sound.AudioType.SoundEffect:
-                        s._source.outputAudioMixerGroup = _soundMixerGroup;
-                        break;
 
-                    case Sound.AudioType.MusicEffect:
-                        s._source.outputAudioMixerGroup = _musicMixerGroup;
-                        break;
-                }
+                s._source.outputAudioMixerGroup = s._audioType switch
+                {
+                    Sound.AudioType.SoundEffect => _soundMixerGroup,
+                    Sound.AudioType.MusicEffect => _musicMixerGroup,
+                    _ => s._source.outputAudioMixerGroup
+                };
 
                 s._source.clip = s._clip;
                 s._source.volume = s._volume;

@@ -18,7 +18,7 @@ namespace SaveAndLoadSystem
                 return _instance;
             }
             
-            private set => _instance = (_instance == null) ? value : null;
+            private set => _instance = _instance == null ? value : null;
         }
         
         private static Serializer _instance;

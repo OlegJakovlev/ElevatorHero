@@ -10,14 +10,14 @@ namespace Entity.Player
         private float _duration;
 
         [Header("Height")]
-        public float heightCoefficient;
+        public float _heightCoefficient;
         
         [Header("Gravity Graphic")]
-        public AnimationCurve gravityChange;
+        public AnimationCurve _gravityChange;
 
         private void Awake()
         {
-            _duration = gravityChange.keys[gravityChange.keys.Length - 1].time;
+            _duration = _gravityChange.keys[_gravityChange.keys.Length - 1].time;
         }
         
         private void Update()
@@ -39,7 +39,7 @@ namespace Entity.Player
 
         public float GetProgressValue()
         {
-            return gravityChange.Evaluate(_progress);
+            return _gravityChange.Evaluate(_progress);
         }
     }
 }

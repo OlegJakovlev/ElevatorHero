@@ -155,7 +155,7 @@ public class @InputMapping : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""negative"",
-                    ""id"": ""20fb4428-70fa-4785-a86d-0984261a95ac"",
+                    ""id"": ""ac025fdb-5c54-4221-a350-c59c1957842a"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",

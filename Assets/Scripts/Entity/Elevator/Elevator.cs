@@ -87,8 +87,8 @@ namespace Entity.Elevator
         
         private void Update()
         {
-            if ((_isVertical && Mathf.Abs(_nextStop.GetPosition().y - transform.position.y) <= _maxDifference) || 
-                (!_isVertical && Mathf.Abs(_nextStop.GetPosition().x - transform.position.x) <= _maxDifference))
+            if (_isVertical && Mathf.Abs(_nextStop.GetPosition().y - transform.position.y) <= _maxDifference || 
+                !_isVertical && Mathf.Abs(_nextStop.GetPosition().x - transform.position.x) <= _maxDifference)
             {
                 // Play sound only if manually called and first time
                 if (_manualCalled && !_playedSound)
@@ -122,7 +122,7 @@ namespace Entity.Elevator
 
         private void FixedUpdate()
         {
-            float difference = (_isVertical) ? transform.position.y - _nextStop.GetPosition().y : transform.position.x - _nextStop.GetPosition().x;
+            float difference = _isVertical ? transform.position.y - _nextStop.GetPosition().y : transform.position.x - _nextStop.GetPosition().x;
 
             float appliedVelocity =
                 Mathf.Lerp(

@@ -48,8 +48,7 @@ namespace Entity.Civilian
 
             // Disable entry trigger
             _active = false;
-            
-            _score.PlayerGiveCitizenPapers();
+            _score.PlayerGiveCitizenPapers(transform);
 
             // Play animation?
             _animator.Play("ReceivePaper");

@@ -1,4 +1,3 @@
-using System;
 using Components.Health;
 using Components.Health.PlayerHealth;
 using UnityEngine;
@@ -27,7 +26,6 @@ namespace Components
                 if (entryCollider.TryGetComponent(out EntityHealth enemyHealth))
                 {
                     enemyHealth.LoseHealth(1);
-                    return;
                 }
             }
         }

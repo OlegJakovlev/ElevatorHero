@@ -4905,6 +4905,7 @@ MonoBehaviour:
   _killCitizen: -250
   _givePapersToCitizen: 200
   _finishTheLevel: 1000
+  _scoreIncreaseText: {fileID: 8395604630501962875, guid: 0bd6af9c6694b1548ad58482459cb122, type: 3}
   _view: {fileID: 1325106011940603516}
 --- !u!114 &1325106012883792145
 MonoBehaviour:

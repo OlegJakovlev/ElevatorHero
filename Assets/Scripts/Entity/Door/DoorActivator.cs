@@ -49,7 +49,7 @@ namespace Entity.Door
             // Disable entry trigger
             _active = false;
             
-            _score.PlayerOpenDoor();
+            _score.PlayerOpenDoor(transform);
             _door.Use(_player);
             
             // Play sound

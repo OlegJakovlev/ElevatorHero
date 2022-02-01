@@ -51,7 +51,7 @@ namespace SaveAndLoadSystem
             return encrypted;
         }
 
-        static byte[] EncryptStringToBytes(string plainText, byte[] key, byte[] iv)
+        private static byte[] EncryptStringToBytes(string plainText, byte[] key, byte[] iv)
         {
             // Check arguments
             if (plainText == null || plainText.Length <= 0)
@@ -68,7 +68,7 @@ namespace SaveAndLoadSystem
                 aesAlg.Key = key;
                 aesAlg.IV = iv;
                 
-                // Create a decrytor to perform the stream transform
+                // Create a encryptor to perform the stream transform
                 ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
 
                 // Create the streams used for encryption
@@ -90,15 +90,15 @@ namespace SaveAndLoadSystem
             return encrypted;
         }
 
-        static string DecryptStringFromBytes(byte[] cipherText, byte[] key, byte[] iv)
+        private static string DecryptStringFromBytes(byte[] cipherText, byte[] key, byte[] iv)
         {
             // Check arguments
             if (cipherText == null || cipherText.Length <= 0)
-                throw new ArgumentNullException("cipherText");
+                throw new ArgumentNullException(nameof(cipherText));
             if (key == null || key.Length <= 0)
-                throw new ArgumentNullException("key");
+                throw new ArgumentNullException(nameof(key));
             if (iv == null || iv.Length <= 0)
-                throw new ArgumentNullException("iv");
+                throw new ArgumentNullException(nameof(iv));
 
             // Declare the string used to hold decrypted text
             string plaintext = null;
@@ -108,7 +108,7 @@ namespace SaveAndLoadSystem
                 aesAlg.Key = key;
                 aesAlg.IV = iv;
                 
-                // Create a decrytor to perform the stream transform
+                // Create a decryptor to perform the stream transform
                 ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
 
                 // Create the streams used for decryption

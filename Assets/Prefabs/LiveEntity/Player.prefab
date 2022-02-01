@@ -309,6 +309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6171dbcf95d42f4c97c58279358f281, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _groundChecker: {fileID: 2545869610196851991}
 --- !u!114 &2545869611535625039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,55 +342,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf1158ca3d1430e45bb6f0123de3f6c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heightCoefficient: 7
-  gravityChange:
+  _heightCoefficient: 7
+  _gravityChange:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: -0.0014266968
-      inSlope: 14.42927
-      outSlope: 14.42927
+      value: 0
+      inSlope: 14.358216
+      outSlope: 14.358216
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.019005314
+      time: 0.019
       value: 0.2728061
-      inSlope: 5.0738955
-      outSlope: 5.0738955
-      tangentMode: 0
+      inSlope: 13.945089
+      outSlope: 13.945089
+      tangentMode: 34
       weightedMode: 0
-      inWeight: 0.27458712
+      inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.07270597
-      value: 0.9987955
-      inSlope: 0.4794785
-      outSlope: 0.4794785
-      tangentMode: 0
+      time: 0.072
+      value: 0.99
+      inSlope: 5.6094475
+      outSlope: 5.6094475
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 0.5
       value: 0.0000076293945
-      inSlope: -2.166471
-      outSlope: -2.166471
+      inSlope: -2.1630406
+      outSlope: -2.1630406
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1.0044413
-      value: -1.0065897
-      inSlope: -1.9954698
-      outSlope: -1.9954698
+      time: 1
+      value: -1.0065
+      inSlope: -2.0130153
+      outSlope: -2.0130153
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.33333334
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4

@@ -6,6 +6,8 @@ namespace Entity.Finish
 {
     public class FinishTrigger : MonoBehaviour
     {
+        [SerializeField] private float _delay = 0.80f;
+        
         [SerializeField] private LayerMask _mask;
         [SerializeField] private bool _lastLevel;
     
@@ -30,11 +32,11 @@ namespace Entity.Finish
         {
             if ((_mask.value & (1 << newCollider.gameObject.layer)) > 0)
             {
-                _score.PlayerFinishLevel();
+                _score.PlayerFinishLevel(transform);
             
                 // Load next level
                 if (!_lastLevel)
-                    CustomSceneManager.Instance.LoadNextSceneAsync();
+                    CustomSceneManager.Instance.LoadNextSceneDelay(_delay);
                 else
                     HighScoreManager.Instance.CheckForHighScore();
             }

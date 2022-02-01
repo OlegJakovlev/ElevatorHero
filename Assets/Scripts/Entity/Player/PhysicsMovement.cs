@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Entity.Player
@@ -75,7 +74,7 @@ namespace Entity.Player
             // Apply jump animation
             if (_playAnimation)
             {
-                _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _jumpAnimation.GetProgressValue() * _jumpAnimation.heightCoefficient);
+                _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _jumpAnimation.GetProgressValue() * _jumpAnimation._heightCoefficient);
 
                 if (_jumpAnimation.GetProgress() > 1f)
                 {
@@ -105,7 +104,7 @@ namespace Entity.Player
 
             if (_isWalled)
             {
-                _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, -1 * _lastTimeGrounded * _jumpAnimation.heightCoefficient);
+                _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, -1 * _lastTimeGrounded * _jumpAnimation._heightCoefficient);
             }
         }
 

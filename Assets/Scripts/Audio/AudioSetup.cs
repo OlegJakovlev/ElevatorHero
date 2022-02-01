@@ -17,7 +17,7 @@ namespace Audio
                 return _instance;
             }
 
-            private set => _instance = (_instance == null) ? value : null;
+            private set => _instance = _instance == null ? value : null;
         }
 
         private static AudioSetup _instance;

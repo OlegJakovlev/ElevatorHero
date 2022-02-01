@@ -88,8 +88,7 @@ namespace SpawnManager.Entity
 
         private SpawnPoint GetSpawnArea()
         {
-            if (_spawnArea.Count <= 0) return null;
-            return _spawnArea[Random.Range(0, _spawnArea.Count)];
+            return _spawnArea.Count <= 0 ? null : _spawnArea[Random.Range(0, _spawnArea.Count)];
         }
 
         protected void ReduceActiveEntities()

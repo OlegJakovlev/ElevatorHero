@@ -16,7 +16,7 @@ public class CustomSceneManager : MonoBehaviour
             return _instance;
         }
 
-        private set => _instance = (_instance == null) ? value : null;
+        private set => _instance = _instance == null ? value : null;
     }
 
     private static CustomSceneManager _instance;
@@ -75,7 +75,7 @@ public class CustomSceneManager : MonoBehaviour
     {
         if (_loadScreen) _loadScreen.SetActive(true);
         
-        int newScene = (SceneManager.GetActiveScene().buildIndex + 1 > SceneManager.sceneCountInBuildSettings - 1) ? 0 : SceneManager.GetActiveScene().buildIndex + 1;
+        int newScene = SceneManager.GetActiveScene().buildIndex + 1 > SceneManager.sceneCountInBuildSettings - 1 ? 0 : SceneManager.GetActiveScene().buildIndex + 1;
         if (newScene == -1) throw new Exception("No such scene exists!");
         
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(newScene);
@@ -85,5 +85,16 @@ public class CustomSceneManager : MonoBehaviour
         }
         
         if (_loadScreen) _loadScreen.SetActive(false);
+    }
+
+    public void LoadNextSceneDelay(float time)
+    {
+        StartCoroutine(LoadNextSceneWithDelay(time));
+    }
+
+    private IEnumerator LoadNextSceneWithDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        yield return StartCoroutine(LoadNextScene());
     }
 }

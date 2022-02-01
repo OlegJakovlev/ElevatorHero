@@ -25,7 +25,7 @@ namespace Entity.Hostage
 
         public void Activate()
         {
-            _score.PlayerSaveHostage();
+            _score.PlayerSaveHostage(transform);
             
             // Play audio
             switch (Random.Range(1, 4))

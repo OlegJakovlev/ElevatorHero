@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace ObjectPool
@@ -29,17 +30,7 @@ namespace ObjectPool
 
         public GameObject GetPooledObject()
         {
-            if (_poolOfObjects.Count < 0) return null;
-
-            foreach (GameObject newObject in _poolOfObjects)
-            {
-                if (!newObject.activeInHierarchy)
-                {
-                    return newObject;
-                }
-            }
-
-            return null;
+            return _poolOfObjects.Count < 0 ? null : _poolOfObjects.FirstOrDefault(newObject => !newObject.activeInHierarchy);
         }
 
         public List<GameObject> GetAllPooledObjects()

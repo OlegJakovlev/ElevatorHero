@@ -13,7 +13,6 @@ namespace UI.Select
 
         public bool IsActive
         {
-            get => IsSet;
             set
             {
                 // Animation using coroutines
@@ -24,10 +23,11 @@ namespace UI.Select
                     ResetImageState();
                 }
 
-                IsSet = value;
+                _isSet = value;
             }
         }
-        protected bool IsSet = false;
+
+        private bool _isSet;
 
         protected virtual void ResetImageState()
         {

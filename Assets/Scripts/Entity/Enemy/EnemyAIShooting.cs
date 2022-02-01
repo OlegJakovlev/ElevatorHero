@@ -31,7 +31,7 @@ namespace Entity.Enemy
             if ((_mask.value & (1 << other.gameObject.layer)) > 0)
             {
                 _playerInRange = true;
-                _shootingDirection = (other.gameObject.transform.position.x > gameObject.transform.position.x) ? 1 : -1;
+                _shootingDirection = other.gameObject.transform.position.x > gameObject.transform.position.x ? 1 : -1;
             }
         }
 

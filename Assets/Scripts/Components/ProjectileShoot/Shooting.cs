@@ -1,4 +1,3 @@
-using System;
 using Audio;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -38,7 +37,7 @@ namespace Components.ProjectileShoot
 
             // Pivot calculation
             _finalShootingPivot = _shootingPivot.localPosition;
-            _finalShootingPivot.x *= (direction == 0 ? -1 : direction);
+            _finalShootingPivot.x *= direction == 0 ? -1 : direction;
 
             // Check if projectile position is empty space
             Vector2 worldProjectilePosition = gameObject.transform.position + _finalShootingPivot;

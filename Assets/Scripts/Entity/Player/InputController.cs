@@ -14,6 +14,7 @@ namespace Entity.Player
         private InputMapping _controls;
 
         [Header("Physics")]
+        [SerializeField] private GroundChecker _groundChecker;
         private Vector2 _movementVector;
         private Vector2 _lastNonZeroMovementVector = Vector2.left;
         private PhysicsMovement _physicsMovement;
@@ -73,6 +74,13 @@ namespace Entity.Player
 
         private void Update()
         {
+            if (_movementVector == Vector2.zero
+                && !_animator.IsInTransition(0)
+                && _animator.GetCurrentAnimatorStateInfo(0).length > 1)
+            {
+                _animator.Play("PlayerIdle");
+            }
+
             _physicsMovement.ApplyHorizontal(_movementVector.x);
             _physicsMovement.ApplyVertical(_movementVector.y);
         }
@@ -105,23 +113,21 @@ namespace Entity.Player
             {
                 _lastNonZeroMovementVector.x = direction;
                 _spriteFlipper.FlipSprite(direction > 0);
-                _animator.Play("PlayerRun");
-            }
-            else
-            {
-                _animator.Play("PlayerIdle");
+                if (_groundChecker.IsGrounded) _animator.Play("PlayerRun");
             }
         }
         
         private void Jump(float direction)
         {
             _movementVector.y = direction;
-
-            if (direction != 0) _lastNonZeroMovementVector.y = direction;
-            if (direction > 0) _animator.Play("PlayerJump");
+            if (direction != 0)
+            {
+                _lastNonZeroMovementVector.y = direction;
+                _animator.Play("PlayerJump");
+            }
         }
 
-        private void Duck(float pressed)
+        private void Duck(float value)
         {
             _animator.Play("PlayerDuck");
         }

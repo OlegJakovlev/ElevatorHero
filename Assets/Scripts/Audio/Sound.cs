@@ -5,7 +5,7 @@ namespace Audio
     [System.Serializable]
     public class Sound
     {
-        public enum AudioType { SoundEffect, MusicEffect };
+        public enum AudioType { SoundEffect, MusicEffect }
         public AudioType _audioType;
 
         public string _name;

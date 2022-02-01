@@ -16,7 +16,7 @@ namespace SaveAndLoadSystem.HighScore
                 return _instance;
             }
             
-            private set => _instance = (_instance == null) ? value : null;
+            private set => _instance = _instance == null ? value : null;
         }
         private static HighScoreManager _instance;
     

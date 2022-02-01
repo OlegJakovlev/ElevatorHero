@@ -39,7 +39,10 @@ namespace SpawnManager.Entity
             {
                 if (entity.TryGetComponent(out EntityHealth entityHealth))
                 {
-                    entityHealth.OnDeath += () => _score.PlayerKillEnemy();
+                    entityHealth.OnDeath += () =>
+                    {
+                        _score.PlayerKillEnemy(entity.transform);
+                    };
                 }
             }
             
