@@ -18,21 +18,21 @@ namespace SpawnManager.Entity
         [SerializeField] protected List<SpawnPoint> _spawnArea;
 
         [Header("Object properties")]
-        [SerializeField] protected ScoreSetup _score;
+        protected ScoreSetup Score;
 
         protected bool Active = true;
         private int _spawnedEntities;
 
         protected virtual void Awake()
         {
-            if (!_score)
+            if (!Score)
             {
                 // Get global controller
                 GameObject globalController = GameObject.FindWithTag("GameController");
 
                 if (globalController.TryGetComponent(out ScoreSetup score))
                 {
-                    _score = score;
+                    Score = score;
                 }
             }
         }
@@ -54,7 +54,7 @@ namespace SpawnManager.Entity
             if (Active) Spawn();
         }
 
-        public void Spawn()
+        public virtual void Spawn()
         {
             if (_spawnedEntities >= _entitiesSpawnLimit) return;
             if (_spawnArea.Count <= 0)
@@ -86,7 +86,7 @@ namespace SpawnManager.Entity
             newEntity.SetActive(true);
         }
 
-        private SpawnPoint GetSpawnArea()
+        protected SpawnPoint GetSpawnArea()
         {
             return _spawnArea.Count <= 0 ? null : _spawnArea[Random.Range(0, _spawnArea.Count)];
         }

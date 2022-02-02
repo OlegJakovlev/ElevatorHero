@@ -14,7 +14,7 @@ namespace SpawnManager.Entity
                 // If entity is dead, reduce score
                 if (entity.TryGetComponent(out EntityHealth health))
                 {
-                    health.OnDeath += () => _score.PlayerKillCitizen(entity.transform);
+                    health.OnDeath += () => Score.PlayerKillCitizen(entity.transform);
                 }
             }
 

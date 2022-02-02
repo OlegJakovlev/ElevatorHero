@@ -1,4 +1,6 @@
-﻿using Components.Health.PlayerHealth;
+﻿using System;
+using Components.Health.PlayerHealth;
+using Entity.Player;
 using SaveAndLoadSystem.HighScore;
 using UnityEngine;
 
@@ -7,8 +9,10 @@ namespace SpawnManager.Entity
     public class PlayerSpawner : AggressiveSpawner
     {
         [Header("Object Properties")]
-        [SerializeField] private PlayerHealthView _healthView;
+        private PlayerHealthView _healthView;
 
+        public event Action OnRespawn;
+        
         protected override void Awake()
         {
             base.Awake();
@@ -36,7 +40,21 @@ namespace SpawnManager.Entity
                         HighScoreManager.Instance.CheckForHighScore();
                     };
                 }
+
+                if (entity.TryGetComponent(out InputController inputController))
+                {
+                    OnRespawn += () =>
+                    {
+                        inputController.enabled = true;
+                    };
+                }
             }
+        }
+
+        public override void Spawn()
+        {
+            base.Spawn();
+            OnRespawn?.Invoke();
         }
     }
 }

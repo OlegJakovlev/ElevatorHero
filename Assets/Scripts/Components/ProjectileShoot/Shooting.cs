@@ -1,3 +1,4 @@
+using System;
 using Audio;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -20,6 +21,11 @@ namespace Components.ProjectileShoot
 
         [Header("Object Pool")]
         [SerializeField] private ObjectPool.ObjectPool _projectileObjectPool;
+
+        private void OnEnable()
+        {
+            _lastTimeShootTime = _timeDelayBetweenShots;
+        }
 
         private void Update()
         {

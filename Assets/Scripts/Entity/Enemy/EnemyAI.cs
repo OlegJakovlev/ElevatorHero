@@ -62,7 +62,7 @@ namespace Entity.Enemy
             }
             catch (Exception e)
             {
-                Debug.Log(e + gameObject.GetInstanceID().ToString());
+                //Debug.Log(e + gameObject.GetInstanceID().ToString());
             }
         }
     }

@@ -1,3 +1,4 @@
+using System.Collections;
 using Audio;
 using Components;
 using Components.Score;
@@ -40,7 +41,13 @@ namespace Entity.Hostage
                     AudioSetup.Instance.PlaySound("Hostage3");
                     break;
             }
-            
+
+            StartCoroutine(Deactivate());
+        }
+
+        private IEnumerator Deactivate()
+        {
+            yield return new WaitForSeconds(0.5f);
             gameObject.SetActive(false);
         }
     }

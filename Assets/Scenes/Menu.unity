@@ -379,4 +379,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioToStop:
   - GameMusic
+  - Alarm
   _audioName: MenuMusic

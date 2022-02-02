@@ -41,7 +41,7 @@ namespace SpawnManager.Entity
                 {
                     entityHealth.OnDeath += () =>
                     {
-                        _score.PlayerKillEnemy(entity.transform);
+                        Score.PlayerKillEnemy(entity.transform);
                     };
                 }
             }

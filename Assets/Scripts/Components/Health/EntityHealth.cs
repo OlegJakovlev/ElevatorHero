@@ -47,12 +47,18 @@ namespace Components.Health
             // Can not obtain more damage than needed
             _invincibility = true;
             
+            print(1);
+            
             // Update current health
             _currentHealth -= amount;
             OnDamageTaken?.Invoke();
             
+            print(2);
+            
             // Play entity hit sound
             AudioSetup.Instance.PlaySound("EntityHit");
+            
+            print(3);
 
             // Check for current health
             if (_currentHealth <= 0) Die();

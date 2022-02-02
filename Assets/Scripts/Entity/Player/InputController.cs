@@ -74,9 +74,7 @@ namespace Entity.Player
 
         private void Update()
         {
-            if (_movementVector == Vector2.zero
-                && !_animator.IsInTransition(0)
-                && _animator.GetCurrentAnimatorStateInfo(0).length > 1)
+            if (_movementVector == Vector2.zero && _groundChecker.IsGrounded)
             {
                 _animator.Play("PlayerIdle");
             }
@@ -129,7 +127,8 @@ namespace Entity.Player
 
         private void Duck(float value)
         {
-            _animator.Play("PlayerDuck");
+            if (_movementVector.x == 0)
+                _animator.Play("PlayerDuck");
         }
 
         private void Activate()

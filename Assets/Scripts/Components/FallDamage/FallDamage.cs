@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Components.FallDamage
 {
-    [RequireComponent(typeof(PlayerHealth))]
+    [RequireComponent(typeof(EntityHealth))]
     public class FallDamage : MonoBehaviour
     {
         [SerializeField] private float _maxVerticalVelocity = 10f;
